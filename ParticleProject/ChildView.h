@@ -6,6 +6,7 @@
 #pragma once
 
 #include "graphics/OpenGLWnd.h"
+#include "graphics/GrCamera.h"  
 
 // CChildView window
 
@@ -17,6 +18,9 @@ public:
 
 // Attributes
 public:
+
+private:
+	CGrCamera m_camera;
 
 // Operations
 public:
@@ -35,5 +39,8 @@ protected:
 public:
 	void OnGLDraw(CDC* pDC);
 	void Box(GLdouble p_x, GLdouble p_y, GLdouble p_z, const GLdouble* p_color);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
 };
 

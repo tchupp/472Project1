@@ -14,6 +14,7 @@
 
 CChildView::CChildView()
 {
+	m_camera.Set(20, 10, 50, 0, 0, 0, 0, 1, 0);
 }
 
 CChildView::~CChildView()
@@ -23,7 +24,10 @@ CChildView::~CChildView()
 
 BEGIN_MESSAGE_MAP(CChildView, COpenGLWnd)
 	ON_WM_PAINT()
-	END_MESSAGE_MAP()
+	ON_WM_LBUTTONDOWN()
+	ON_WM_MOUSEMOVE()
+	ON_WM_RBUTTONDOWN()
+END_MESSAGE_MAP()
 
 
 // CChildView message handlers
@@ -50,28 +54,9 @@ void CChildView::OnGLDraw(CDC* pDC)
 	//
 	// Set up the camera
 	//
-
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-
-	// Determine the screen size so we can determine the aspect ratio
 	int width, height;
 	GetSize(width, height);
-	GLdouble aspectratio = GLdouble(width) / GLdouble(height);
-
-	// Set the camera parameters
-	gluPerspective(25., // Vertical FOV degrees.
-	               aspectratio, // The aspect ratio.
-	               10., // Near clipping 40/130
-	               200.); // Far clipping
-
-	// Set the camera location
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-
-	gluLookAt(20., 10., 50., // eye x,y,z
-	          0., 0., 0., // center x,y,z
-	          0., 1., 0.); // Up direction
+	m_camera.Apply(width, height);
 
 	//
 	// Some standard parameters
@@ -83,7 +68,7 @@ void CChildView::OnGLDraw(CDC* pDC)
 	// Cull backfacing polygons
 	glCullFace(GL_BACK);
 	glEnable(GL_CULL_FACE);
-
+	
 	// Enable lighting
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
@@ -97,6 +82,19 @@ void CChildView::OnGLDraw(CDC* pDC)
 	glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
 	glPopMatrix();
 
+	// Draw cube
+	const double RED[] = { 0.7, 0.0, 0.0 };
+	glPushMatrix();
+	glTranslated(1.5, 1.5, 1.5);
+	glRotated(45.0, 45.0, 45.0, 1.);
+	glTranslated(-1.5, -1.5, -1.5);
+	Box(3., 3., 3., RED);
+	glPopMatrix();
+
+	// Disable lighting
+	glDisable(GL_LIGHTING);
+	glDisable(GL_LIGHT0);
+
 	// Draw a coordinate axis
 	glColor3d(0., 1., 1.);
 
@@ -108,9 +106,6 @@ void CChildView::OnGLDraw(CDC* pDC)
 	glVertex3d(0., 0., 0.);
 	glVertex3d(0., 0., 12.);
 	glEnd();
-
-	const double RED[] = { 0.7, 0.0, 0.0 };
-	Box(3., 3., 3., RED);
 }
 
 //
@@ -166,4 +161,29 @@ void CChildView::Box(GLdouble p_x, GLdouble p_y, GLdouble p_z, const GLdouble* p
 
 	glNormal3d(0., -1., 0.);
 	Quad(e, f, b, a); // Bottom
+}
+
+
+void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	m_camera.MouseDown(point.x, point.y);
+
+	COpenGLWnd::OnLButtonDown(nFlags, point);
+}
+
+
+void CChildView::OnMouseMove(UINT nFlags, CPoint point)
+{
+	if (m_camera.MouseMove(point.x, point.y, nFlags))
+		Invalidate();
+
+	COpenGLWnd::OnMouseMove(nFlags, point);
+}
+
+
+void CChildView::OnRButtonDown(UINT nFlags, CPoint point)
+{
+	m_camera.MouseDown(point.x, point.y, 2);
+
+	COpenGLWnd::OnRButtonDown(nFlags, point);
 }
