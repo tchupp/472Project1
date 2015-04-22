@@ -32,5 +32,8 @@ public:
 	// Generated message map functions
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
+	void OnGLDraw(CDC* pDC);
+	void Box(GLdouble p_x, GLdouble p_y, GLdouble p_z, const GLdouble* p_color);
 };
 
