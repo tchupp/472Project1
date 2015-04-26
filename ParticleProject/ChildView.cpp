@@ -163,7 +163,6 @@ void CChildView::Box(GLdouble p_x, GLdouble p_y, GLdouble p_z, const GLdouble* p
 	Quad(e, f, b, a); // Bottom
 }
 
-
 void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	m_camera.MouseDown(point.x, point.y);
