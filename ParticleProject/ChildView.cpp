@@ -27,15 +27,14 @@ BEGIN_MESSAGE_MAP(CChildView, COpenGLWnd)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_MOUSEMOVE()
 	ON_WM_RBUTTONDOWN()
-END_MESSAGE_MAP()
+	END_MESSAGE_MAP()
 
 
 // CChildView message handlers
 
 BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 {
-	if (!COpenGLWnd::PreCreateWindow(cs))
-		return FALSE;
+	if (!COpenGLWnd::PreCreateWindow(cs)) return FALSE;
 
 	cs.dwExStyle |= WS_EX_CLIENTEDGE;
 	cs.style &= ~WS_BORDER;
@@ -68,13 +67,13 @@ void CChildView::OnGLDraw(CDC* pDC)
 	// Cull backfacing polygons
 	glCullFace(GL_BACK);
 	glEnable(GL_CULL_FACE);
-	
+
 	// Enable lighting
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 
 	// light position
-	GLfloat lightpos[] = { 0.5, 2.0, 1.0, 0. };
+	GLfloat lightpos[] = {0.5, 2.0, 1.0, 0.};
 	glPushMatrix();
 	glTranslated(0.5, 2.0, 1.0);
 	glRotated(45.0, 1, 0, 1);
@@ -83,7 +82,7 @@ void CChildView::OnGLDraw(CDC* pDC)
 	glPopMatrix();
 
 	// Draw cube
-	const double RED[] = { 0.7, 0.0, 0.0 };
+	const double RED[] = {0.7, 0.0, 0.0};
 	glPushMatrix();
 	glTranslated(1.5, 1.5, 1.5);
 	glRotated(45.0, 45.0, 45.0, 1.);
@@ -135,14 +134,14 @@ inline void Quad(GLdouble* v1, GLdouble* v2, GLdouble* v3, GLdouble* v4)
 //
 void CChildView::Box(GLdouble p_x, GLdouble p_y, GLdouble p_z, const GLdouble* p_color)
 {
-	GLdouble a[] = { 0., 0., p_z };
-	GLdouble b[] = { p_x, 0., p_z };
-	GLdouble c[] = { p_x, p_y, p_z };
-	GLdouble d[] = { 0., p_y, p_z };
-	GLdouble e[] = { 0., 0., 0. };
-	GLdouble f[] = { p_x, 0., 0. };
-	GLdouble g[] = { p_x, p_y, 0. };
-	GLdouble h[] = { 0., p_y, 0. };
+	GLdouble a[] = {0., 0., p_z};
+	GLdouble b[] = {p_x, 0., p_z};
+	GLdouble c[] = {p_x, p_y, p_z};
+	GLdouble d[] = {0., p_y, p_z};
+	GLdouble e[] = {0., 0., 0.};
+	GLdouble f[] = {p_x, 0., 0.};
+	GLdouble g[] = {p_x, p_y, 0.};
+	GLdouble h[] = {0., p_y, 0.};
 
 	glNormal3d(0., 0., 1.);
 	Quad(a, b, c, d); // Front
@@ -173,8 +172,7 @@ void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
 
 void CChildView::OnMouseMove(UINT nFlags, CPoint point)
 {
-	if (m_camera.MouseMove(point.x, point.y, nFlags))
-		Invalidate();
+	if (m_camera.MouseMove(point.x, point.y, nFlags)) Invalidate();
 
 	COpenGLWnd::OnMouseMove(nFlags, point);
 }

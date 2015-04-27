@@ -12,9 +12,12 @@ public:
 	void Draw();
 	void AddTriangleVertex(int v, int n, int t);
 	void LoadOBJ(const char* filename);
-	void AddVertex(const CGrVector &v) { m_vertices.push_back(v); }
-	void AddNormal(const CGrVector &n) { m_normals.push_back(n); }
-	void AddTexCoord(const CGrVector &t) { m_tvertices.push_back(t); }
+
+	void AddVertex(const CGrVector& v) { m_vertices.push_back(v); }
+
+	void AddNormal(const CGrVector& n) { m_normals.push_back(n); }
+
+	void AddTexCoord(const CGrVector& t) { m_tvertices.push_back(t); }
 
 private:
 	std::vector<CGrVector> m_vertices;
@@ -24,12 +27,12 @@ private:
 	// A triangle vertex description
 	struct TV
 	{
-		int     v;      // Vertex
-		int     n;      // Normal
-		int     t;      // Texture coordinate
+		int v; // Vertex
+		int n; // Normal
+		int t; // Texture coordinate
 	};
 
 	typedef std::vector<TV> Triangles;
 	typedef Triangles::iterator PTV;
-	Triangles       m_triangles;
+	Triangles m_triangles;
 };

@@ -1,4 +1,3 @@
-
 // MainFrm.h : interface of the CMainFrame class
 //
 
@@ -7,42 +6,38 @@
 
 class CMainFrame : public CFrameWnd
 {
-	
 public:
 	CMainFrame();
-protected: 
+protected:
 	DECLARE_DYNAMIC(CMainFrame)
 
-// Attributes
+	// Attributes
 public:
 
-// Operations
+	// Operations
 public:
 
-// Overrides
+	// Overrides
 public:
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-	virtual BOOL OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo);
+	virtual BOOL PreCreateWindow(CREATESTRUCT& cs) override;
+	virtual BOOL OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo) override;
 
-// Implementation
+	// Implementation
 public:
 	virtual ~CMainFrame();
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+	virtual void AssertValid() const override;
+	virtual void Dump(CDumpContext& dc) const override;
 #endif
 
-protected:  // control bar embedded members
-	CToolBar          m_wndToolBar;
-	CStatusBar        m_wndStatusBar;
-	CChildView    m_wndView;
+protected: // control bar embedded members
+	CToolBar m_wndToolBar;
+	CStatusBar m_wndStatusBar;
+	CChildView m_wndView;
 
-// Generated message map functions
+	// Generated message map functions
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnSetFocus(CWnd *pOldWnd);
+	afx_msg void OnSetFocus(CWnd* pOldWnd);
 	DECLARE_MESSAGE_MAP()
-
 };
-
-

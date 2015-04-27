@@ -1,4 +1,3 @@
-
 // ChildView.h : interface of the CChildView class
 //
 
@@ -7,7 +6,6 @@
 
 #include "graphics/OpenGLWnd.h"
 #include "graphics/GrCamera.h"
-#include "Mesh.h"
 
 // CChildView window
 
@@ -16,21 +14,19 @@ class CChildView : public COpenGLWnd
 public:
 	CChildView();
 	virtual ~CChildView();
-	void OnGLDraw(CDC* pDC);
+	void OnGLDraw(CDC* pDC) override;
 	void Box(GLdouble p_x, GLdouble p_y, GLdouble p_z, const GLdouble* p_color);
 
 protected:
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+	virtual BOOL PreCreateWindow(CREATESTRUCT& cs) override;
 
 private:
-	void CreateMesh();
+	// Attributes
 
-
-// Attributes
 private:
 	CGrCamera m_camera;
 
-// Generated message map functions
+	// Generated message map functions
 protected:
 	DECLARE_MESSAGE_MAP()
 public:
@@ -38,4 +34,3 @@ public:
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
 };
-

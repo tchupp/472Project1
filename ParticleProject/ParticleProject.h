@@ -1,4 +1,3 @@
-
 // ParticleProject.h : main header file for the ParticleProject application
 //
 #pragma once
@@ -8,8 +7,6 @@
 #endif
 
 #include "resource.h"       // main symbols
-
-
 // CParticleProjectApp:
 // See ParticleProject.cpp for the implementation of this class
 //
@@ -20,12 +17,12 @@ public:
 	CParticleProjectApp();
 
 
-// Overrides
+	// Overrides
 public:
-	virtual BOOL InitInstance();
-	virtual int ExitInstance();
+	virtual BOOL InitInstance() override;
+	virtual int ExitInstance() override;
 
-// Implementation
+	// Implementation
 
 public:
 	afx_msg void OnAppAbout();

@@ -1,19 +1,15 @@
 #include "stdafx.h"
 #include "Mesh.h"
-#include <fstream>      // For input streams from files
-#include <string>       // For the string type
-#include <sstream>      // For streams from strings
+#include <fstream> // For input streams from files
+#include <string> // For the string type
+#include <sstream> // For streams from strings
 
 using namespace std;
 
-CMesh::CMesh()
-{
-}
+CMesh::CMesh() {}
 
 
-CMesh::~CMesh()
-{
-}
+CMesh::~CMesh() {}
 
 void CMesh::Draw()
 {
@@ -39,7 +35,7 @@ void CMesh::AddTriangleVertex(int v, int n, int t)
 // Name :         CMesh::LoadOBJ()
 // Description :  Load a file in OBJ format.
 //
-void CMesh::LoadOBJ(const char *filename)
+void CMesh::LoadOBJ(const char* filename)
 {
 	ifstream str(filename);
 	if (!str)

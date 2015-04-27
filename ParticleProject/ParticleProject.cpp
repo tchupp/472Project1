@@ -1,4 +1,3 @@
-
 // ParticleProject.cpp : Defines the class behaviors for the application.
 //
 
@@ -7,6 +6,8 @@
 #include "afxdialogex.h"
 #include "ParticleProject.h"
 #include "MainFrm.h"
+#include "resource.h" // main symbols
+
 
 
 #ifdef _DEBUG
@@ -18,7 +19,7 @@
 
 BEGIN_MESSAGE_MAP(CParticleProjectApp, CWinAppEx)
 	ON_COMMAND(ID_APP_ABOUT, &CParticleProjectApp::OnAppAbout)
-END_MESSAGE_MAP()
+	END_MESSAGE_MAP()
 
 
 // CParticleProjectApp construction
@@ -26,7 +27,7 @@ END_MESSAGE_MAP()
 CParticleProjectApp::CParticleProjectApp()
 {
 	// support Restart Manager
-	m_dwRestartManagerSupportFlags = AFX_RESTART_MANAGER_SUPPORT_ALL_ASPECTS;
+	m_dwRestartManagerSupportFlags = AFX_RESTART_MANAGER_SUPPORT_ALL_ASPECTS ;
 #ifdef _MANAGED
 	// If the application is built using Common Language Runtime support (/clr):
 	//     1) This additional setting is needed for Restart Manager support to work properly.
@@ -91,16 +92,12 @@ BOOL CParticleProjectApp::InitInstance()
 	// To create the main window, this code creates a new frame window
 	// object and then sets it as the application's main window object
 	CMainFrame* pFrame = new CMainFrame;
-	if (!pFrame)
-		return FALSE;
+	if (!pFrame) return FALSE;
 	m_pMainWnd = pFrame;
 	// create and load the frame with its resources
 	pFrame->LoadFrame(IDR_MAINFRAME,
-		WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, NULL,
-		NULL);
-
-
-
+	                               WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, NULL,
+	                               NULL);
 
 
 	// The one and only window has been initialized, so show and update it
@@ -127,20 +124,21 @@ class CAboutDlg : public CDialogEx
 public:
 	CAboutDlg();
 
-// Dialog Data
-	enum { IDD = IDD_ABOUTBOX };
+	// Dialog Data
+	enum
+	{
+		IDD = IDD_ABOUTBOX
+	};
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	virtual void DoDataExchange(CDataExchange* pDX); // DDX/DDV support
 
-// Implementation
+	// Implementation
 protected:
 	DECLARE_MESSAGE_MAP()
 };
 
-CAboutDlg::CAboutDlg() : CDialogEx(CAboutDlg::IDD)
-{
-}
+CAboutDlg::CAboutDlg() : CDialogEx(CAboutDlg::IDD) {}
 
 void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 {
@@ -148,7 +146,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
-END_MESSAGE_MAP()
+	END_MESSAGE_MAP()
 
 // App command to run the dialog
 void CParticleProjectApp::OnAppAbout()
@@ -158,6 +156,4 @@ void CParticleProjectApp::OnAppAbout()
 }
 
 // CParticleProjectApp message handlers
-
-
 
