@@ -1,4 +1,3 @@
-
 // stdafx.h : include file for standard system include files,
 // or project specific include files that are used frequently,
 // but are changed infrequently
@@ -16,28 +15,31 @@
 // turns off MFC's hiding of some common and often safely ignored warning messages
 #define _AFX_ALL_WARNINGS
 
-#include <afxwin.h>         // MFC core and standard components
-#include <afxext.h>         // MFC extensions
+#include <afxwin.h> // MFC core and standard components
 
 
-#include <afxdisp.h>        // MFC Automation classes
+#include <afxext.h> // MFC extensions
+
+
+
+#include <afxdisp.h> // MFC Automation classes
 
 
 
 #ifndef _AFX_NO_OLE_SUPPORT
-#include <afxdtctl.h>           // MFC support for Internet Explorer 4 Common Controls
+#include <afxdtctl.h> // MFC support for Internet Explorer 4 Common Controls
+
+
 #endif
 #ifndef _AFX_NO_AFXCMN_SUPPORT
-#include <afxcmn.h>             // MFC support for Windows Common Controls
+#include <afxcmn.h> // MFC support for Windows Common Controls
+
+
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
-#include <afxcontrolbars.h>     // MFC support for ribbons and control bars
 
 
-
-
-
-
+#include <afxcontrolbars.h> // MFC support for ribbons and control bars
 
 
 
@@ -51,4 +53,10 @@
 #endif
 #endif
 
+struct Vector2
+{
+	double X;
+	double Y;
 
+	Vector2(double x, double y) : X(x), Y(y) {}
+};
