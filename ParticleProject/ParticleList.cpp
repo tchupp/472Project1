@@ -21,8 +21,8 @@ CParticleList::~CParticleList() {}
 
 
 /**
-* \brief Add the snowflake to the end of the list
-* \param flake Flake to add to the list
+* \brief Add the particle to the end of the list
+* \param particle Particle to add to the list
 */
 void CParticleList::PushBack(std::shared_ptr<CParticle> particle)
 {
@@ -42,8 +42,8 @@ void CParticleList::PushBack(std::shared_ptr<CParticle> particle)
 
 
 /**
-* \brief Remove the exact flake
-* \param flake SnowFlake to remove
+* \brief Remove the exact particle
+* \param particle Particle to remove
 * \returns If the remove was successful
 */
 bool CParticleList::Remove(std::shared_ptr<CParticle> particle)

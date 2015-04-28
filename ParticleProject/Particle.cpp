@@ -34,7 +34,7 @@ void CParticle::Update(double delta)
 /**
 * \brief Draw the particle
 */
-void CParticle::OnDraw() {}
+void CParticle::Draw() {}
 
 
 /**

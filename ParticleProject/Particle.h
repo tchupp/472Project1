@@ -26,7 +26,7 @@ public:
 	void operator=(const CParticle &) = delete;
 
 	void Update(double delta);
-	void OnDraw();
+	void Draw();
 
 	Vector2 GetPosition() { return mPos; }
 
