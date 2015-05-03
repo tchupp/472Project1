@@ -15,7 +15,7 @@
 class CParticle
 {
 public:
-	CParticle(Vector2 pos, Vector2 vel);
+	CParticle(Vector3 pos, Vector3 vel);
 	virtual ~CParticle();
 
 	/** \brief Default constructor disabled */
@@ -28,15 +28,15 @@ public:
 	void Update(double delta);
 	void Draw();
 
-	Vector2 GetPosition() { return mPos; }
+	Vector3 GetPosition() { return mPos; }
 
 	/// returns the next flake in the snowlist
 	std::shared_ptr<CParticle> GetNext() { return mNext; }
 	void SetNext(std::shared_ptr<CParticle> next);
 
 private:
-	Vector2 mPos;
-	Vector2 mVel;
+	Vector3 mPos;
+	Vector3 mVel;
 
 	std::shared_ptr<CParticle> mNext; ///< pointer to the next particle in the list
 };

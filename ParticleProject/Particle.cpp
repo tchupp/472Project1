@@ -11,7 +11,7 @@
 /**
 * \brief Constructor
 */
-CParticle::CParticle(Vector2 pos, Vector2 vel) : mPos(pos), mVel(vel) {}
+CParticle::CParticle(Vector3 pos, Vector3 vel) : mPos(pos), mVel(vel) {}
 
 
 /**
