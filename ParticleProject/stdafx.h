@@ -53,11 +53,10 @@
 #endif
 #endif
 
-struct Vector3
+struct Vector2
 {
 	double X;
 	double Y;
-	double Z;
 
-	Vector3(double x, double y, double z) : X(x), Y(y), Z(z) {}
+	Vector2(double x, double y) : X(x), Y(y) {}
 };
