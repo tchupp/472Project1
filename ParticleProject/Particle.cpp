@@ -12,7 +12,10 @@
 /**
 * \brief Constructor
 */
-CParticle::CParticle(Vector2 pos, Vector2 vel, Vector2 z_val) : mPos(pos), mVel(vel), mZposition_value(z_val) {}
+CParticle::CParticle(Vector3 pos, Vector3 vel, double lifeTime)
+{
+	Spawn(pos, vel, lifeTime);
+}
 
 
 /**
@@ -21,6 +24,23 @@ CParticle::CParticle(Vector2 pos, Vector2 vel, Vector2 z_val) : mPos(pos), mVel(
 CParticle::~CParticle() {}
 
 
+bool CParticle::Dead()
+{
+	if (mLifeTime <= 0)
+	{
+		return true;
+	}
+	return false;
+}
+
+void CParticle::Spawn(Vector3 pos, Vector3 vel, double lifeTime)
+{
+	mPos = pos;
+	mVel = vel;
+	mLifeTime = lifeTime;
+	mTotal = 0;
+}
+
 /**
 * \brief updates the x and y position based on the velocity and change in time
 * \param delta change in time since last update
@@ -28,10 +48,15 @@ CParticle::~CParticle() {}
 void CParticle::Update(double delta)
 {
 	mTotal += delta;
+
+	// update position
 	mPos.X += mVel.X * delta;
 	mPos.Y += (mVel.Y * delta*10.0) - mTotal;
 	//mPos.Y -= (mTotal*delta);
-	mZposition_value.X += mZposition_value.Y * delta;
+	mPos.Z += mVel.Z * delta;
+
+	// update lifetime
+	mLifeTime -= delta;
 }
 
 
@@ -45,7 +70,7 @@ void CParticle::Draw()
 	// Draw cube
 	const double RED[] = {0.7, 0.0, 0.0};
 	glPushMatrix();
-	glTranslated(mPos.X, mPos.Y, mZposition_value.X);
+	glTranslated(mPos.X, mPos.Y, mPos.Z);
 	//glRotated(45.0, 45.0, 45.0, 1.);
 	//glTranslated(-mPos.X, -mPos.Y, -1.5);
 	GLdouble p_x = 1.;

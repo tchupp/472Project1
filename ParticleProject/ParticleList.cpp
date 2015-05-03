@@ -13,7 +13,7 @@
 */
 CParticleList::CParticleList() 
 {
-	mSize = 4;
+	mSize = 0;
 
 	//Builds a set amount of particles to the inactive list 
 	//for (int i = 0; i < mSize; i++){
