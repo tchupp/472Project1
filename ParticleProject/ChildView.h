@@ -6,6 +6,7 @@
 
 #include "graphics/OpenGLWnd.h"
 #include "graphics/GrCamera.h"
+#include "ParticlePool.h"
 
 // CChildView window
 
@@ -25,6 +26,13 @@ private:
 
 private:
 	CGrCamera m_camera;
+	CParticlePool mParticle;
+
+	/// True until the first time we draw
+	bool mFirstDraw = true;
+
+	long long mLastTime;    ///< Last time we read the timer
+	double mTimeFreq;       ///< Rate the timer updates
 
 	// Generated message map functions
 protected:
@@ -33,4 +41,5 @@ public:
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 };

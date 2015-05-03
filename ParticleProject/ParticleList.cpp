@@ -11,7 +11,15 @@
 /**
 * \brief Constructor
 */
-CParticleList::CParticleList() : mSize(0) {}
+CParticleList::CParticleList() 
+{
+	mSize = 4;
+
+	//Builds a set amount of particles to the inactive list 
+	//for (int i = 0; i < mSize; i++){
+		//PushBack(std::make_shared<CParticle>());
+	
+}
 
 
 /**
@@ -26,7 +34,7 @@ CParticleList::~CParticleList() {}
 */
 void CParticleList::PushBack(std::shared_ptr<CParticle> particle)
 {
-	assert(particle != nullptr);
+	//assert(particle != nullptr);
 	mSize++;
 	if (mHead == nullptr)
 	{

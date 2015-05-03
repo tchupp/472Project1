@@ -8,14 +8,16 @@
 
 #pragma once
 #include <memory>
+#include "graphics/OpenGLWnd.h"
+#include "graphics/GrCamera.h"
 
 /**
 * \brief Class that represents a single particle
 */
-class CParticle
+class CParticle : public COpenGLWnd
 {
 public:
-	CParticle(Vector2 pos, Vector2 vel);
+	CParticle(Vector2 pos, Vector2 vel, Vector2 zVal);
 	virtual ~CParticle();
 
 	/** \brief Default constructor disabled */
@@ -37,6 +39,11 @@ public:
 private:
 	Vector2 mPos;
 	Vector2 mVel;
+	Vector2 mZposition_value;
+	double mTotal=0;
 
 	std::shared_ptr<CParticle> mNext; ///< pointer to the next particle in the list
+
+	
+
 };

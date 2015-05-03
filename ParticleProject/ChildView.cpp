@@ -9,12 +9,16 @@
 #define new DEBUG_NEW
 #endif
 
+/// Frame duration in milliseconds
+const int FrameDuration = 30;
+
 
 // CChildView
 
 CChildView::CChildView()
 {
 	m_camera.Set(20, 10, 50, 0, 0, 0, 0, 1, 0);
+
 }
 
 CChildView::~CChildView()
@@ -27,7 +31,8 @@ BEGIN_MESSAGE_MAP(CChildView, COpenGLWnd)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_MOUSEMOVE()
 	ON_WM_RBUTTONDOWN()
-	END_MESSAGE_MAP()
+	ON_WM_TIMER()
+END_MESSAGE_MAP()
 
 
 // CChildView message handlers
@@ -41,12 +46,41 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	cs.lpszClass = AfxRegisterWndClass(CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS,
 	                                             ::LoadCursor(NULL, IDC_ARROW), reinterpret_cast<HBRUSH>(COLOR_WINDOW + 1), NULL);
 
+	
+
 	return TRUE;
 }
 
 
+
+
 void CChildView::OnGLDraw(CDC* pDC)
 {
+	if (mFirstDraw)
+	{
+		mFirstDraw = false;
+		SetTimer(1, FrameDuration, nullptr);
+
+		/*
+		* Initialize the elapsed time system
+		*/
+		LARGE_INTEGER time, freq;
+		QueryPerformanceCounter(&time);
+		QueryPerformanceFrequency(&freq);
+
+		mLastTime = time.QuadPart;
+		mTimeFreq = double(freq.QuadPart);
+	}
+	/*
+	* Compute the elapsed time since the last draw
+	*/
+	LARGE_INTEGER time;
+	QueryPerformanceCounter(&time);
+	long long diff = time.QuadPart - mLastTime;
+	double elapsed = double(diff) / mTimeFreq;
+	mParticle.Update(elapsed);
+	mLastTime = time.QuadPart;
+
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -82,13 +116,16 @@ void CChildView::OnGLDraw(CDC* pDC)
 	glPopMatrix();
 
 	// Draw cube
-	const double RED[] = {0.7, 0.0, 0.0};
-	glPushMatrix();
-	glTranslated(1.5, 1.5, 1.5);
-	glRotated(45.0, 45.0, 45.0, 1.);
-	glTranslated(-1.5, -1.5, -1.5);
-	Box(3., 3., 3., RED);
-	glPopMatrix();
+	//const double RED[] = {0.7, 0.0, 0.0};
+	//glPushMatrix();
+	//glTranslated(1.5, 1.5, 1.5);
+	//glRotated(45.0, 45.0, 45.0, 1.);
+	//glTranslated(-1.5, -1.5, -1.5);
+	//Box(3., 3., 3., RED);
+	//glPopMatrix();
+
+	//Drawing the particles
+	mParticle.Draw();
 
 	// Disable lighting
 	glDisable(GL_LIGHTING);
@@ -183,4 +220,12 @@ void CChildView::OnRButtonDown(UINT nFlags, CPoint point)
 	m_camera.MouseDown(point.x, point.y, 2);
 
 	COpenGLWnd::OnRButtonDown(nFlags, point);
+}
+
+
+void CChildView::OnTimer(UINT_PTR nIDEvent)
+{
+	// TODO: Add your message handler code here and/or call default
+	Invalidate();
+	COpenGLWnd::OnTimer(nIDEvent);
 }
