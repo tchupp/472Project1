@@ -15,17 +15,19 @@ const int MaxAdded = 7; ///< will actually be total particles over time of anima
 /// total number of active snowflakes
 const int MaxActive = 100000;
 
+
+
 std::uniform_real_distribution<double> unif(-5.0, 5.0);
 std::uniform_real_distribution<double> unif1(1.0, 3.0);
 std::uniform_real_distribution<double> unif2(-5.0, 5.0);
-std::uniform_real_distribution<double> rand_lifetime(1.0, 3.0);
+std::uniform_real_distribution<double> rand_lifetime(0.5, 1.0);
 std::default_random_engine re;
 
 /**
 * \brief Constructor
 */
 CParticlePool::CParticlePool() {
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 100; i++) {
 		double a_random_double = unif(re);
 		double a_random_double2 = unif(re);
 		double a_random_double3 = unif(re);

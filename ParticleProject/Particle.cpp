@@ -7,7 +7,11 @@
 #include "stdafx.h"
 #include "Particle.h"
 #include "graphics/GrTexture.h"
+#include <random>
 
+
+std::default_random_engine generator;
+std::uniform_int_distribution<int> distribution(0, 4);
 
 
 /**
@@ -17,7 +21,27 @@ CParticle::CParticle(Vector3 pos, Vector3 vel, double lifeTime)
 {
 	Spawn(pos, vel, lifeTime);
 	mGreen.LoadFile(L"textures/green.bmp");
+	mRed.LoadFile(L"textures/red.bmp");
+	mYellow.LoadFile(L"textures/yellow.bmp");
+	mBlue.LoadFile(L"textures/blue.bmp");
+	int index = distribution(generator);
+	if (index == 0){
+		mSphere.SetTexture(&mGreen);
+	}
+	else if (index == 1){
+		mSphere.SetTexture(&mRed);
+	}
+	else if (index == 2){
+		mSphere.SetTexture(&mBlue);
+	}
+	else if (index == 3){
+		mSphere.SetTexture(&mYellow);
+	}
+	else{
+		mSphere.SetTexture(&mPink);
+	}
 	mSphere.SetTexture(&mGreen);
+
 }
 
 

@@ -48,6 +48,10 @@ private:
 
 	CSphere mSphere;
 	CGrTexture mGreen;
+	CGrTexture mRed;
+	CGrTexture mBlue;
+	CGrTexture mYellow;
+	CGrTexture mPink;
 
 	std::shared_ptr<CParticle> mNext; ///< pointer to the next particle in the list
 };
