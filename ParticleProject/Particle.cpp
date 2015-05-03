@@ -26,8 +26,10 @@ CParticle::~CParticle() {}
 */
 void CParticle::Update(double delta)
 {
+	// TODO: add gravity
 	mPos.X += mVel.X * delta;
 	mPos.Y += mVel.Y * delta;
+	mPos.Z += mVel.Z * delta;
 }
 
 
