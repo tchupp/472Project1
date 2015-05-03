@@ -10,6 +10,9 @@
 #include <memory>
 #include "graphics/OpenGLWnd.h"
 #include "graphics/GrCamera.h"
+#include "graphics/GrTexture.h"
+#include "Sphere.h"
+
 
 /**
 * \brief Class that represents a single particle
@@ -43,8 +46,8 @@ private:
 	double mTotal = 0;
 	double mLifeTime;
 
+	CSphere mSphere;
+	CGrTexture mGreen;
+
 	std::shared_ptr<CParticle> mNext; ///< pointer to the next particle in the list
-
-	
-
 };
