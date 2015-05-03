@@ -119,5 +119,17 @@
     <Image Include="textures\green.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="textures\blue.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\pink.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\red.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\yellow.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -142,7 +142,11 @@
   <ItemGroup>
     <Image Include="res\ParticleProject.ico" />
     <Image Include="res\Toolbar.bmp" />
+    <Image Include="textures\blue.bmp" />
     <Image Include="textures\green.bmp" />
+    <Image Include="textures\pink.bmp" />
+    <Image Include="textures\red.bmp" />
+    <Image Include="textures\yellow.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
