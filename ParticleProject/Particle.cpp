@@ -19,29 +19,14 @@ std::uniform_int_distribution<int> distribution(0, 5);
 */
 CParticle::CParticle(Vector3 pos, Vector3 vel, double lifeTime)
 {
-	Spawn(pos, vel, lifeTime);
 	mGreen.LoadFile(L"textures/green.bmp");
 	mRed.LoadFile(L"textures/red.bmp");
-	mYellow.LoadFile(L"textures/yellow.bmp");
 	mBlue.LoadFile(L"textures/blue.bmp");
 	mPink.LoadFile(L"textures/pink.bmp");
-	int index = distribution(generator);
-	if (index == 0){
-		mSphere.SetTexture(&mGreen);
-	}
-	else if (index == 1){
-		mSphere.SetTexture(&mRed);
-	}
-	else if (index == 2){
-		mSphere.SetTexture(&mBlue);
-	}
-	else if (index == 3){
-		mSphere.SetTexture(&mYellow);
-	}
-	else{
-		mSphere.SetTexture(&mPink);
-	}
+	mYellow.LoadFile(L"textures/yellow.bmp");
 
+	Spawn(pos, vel, lifeTime);
+	SetColor(-1);
 }
 
 
@@ -104,4 +89,52 @@ void CParticle::SetNext(std::shared_ptr<CParticle> next)
 {
 	mNext = next;
 	assert(mNext.get() != this);
+}
+
+
+void CParticle::SetColor(int value)
+{
+	int color = value;
+	CGrTexture textureColor;
+
+	if (color == -1)
+	{
+		double x = rand() / static_cast<double>(RAND_MAX + 1.0);
+
+		color = 1 + static_cast<int>(x * (5));
+	}
+
+	switch (color)
+	{
+	case 1:
+	{
+		mSphere.SetTexture(&mGreen);
+		break;
+	}
+	case 2:
+	{
+		mSphere.SetTexture(&mRed);
+		break;
+	}
+	case 3:
+	{
+		mSphere.SetTexture(&mBlue);
+		break;
+	}
+	case 4:
+	{
+		mSphere.SetTexture(&mYellow);
+		break;
+	}
+	case 5:
+	{
+		mSphere.SetTexture(&mPink);
+		break;
+	}
+	default:
+	{
+		mSphere.SetTexture(&mGreen);
+		break;
+	}
+	}
 }
