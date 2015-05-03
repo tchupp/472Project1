@@ -15,6 +15,7 @@
 */
 CParticle::CParticle(Vector2 pos, Vector2 vel, Vector2 z_val) : mPos(pos), mVel(vel), mZposition_value(z_val) 
 {
+	Spawn(pos, vel, lifeTime);
 	mGreen.LoadFile(L"textures/green.bmp");
 	mSphere.SetTexture(&mGreen);
 }
