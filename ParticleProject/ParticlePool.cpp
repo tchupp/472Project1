@@ -84,6 +84,7 @@ void CParticlePool::Update(double delta)
 	// update position of all the active particles
 	for (auto particle = mActive.GetHead(); particle != nullptr; particle = particle->GetNext())
 	{
+		particle->SetRadius(mParticleRadius);
 		particle->Update(delta);
 	}
 }

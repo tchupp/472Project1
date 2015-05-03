@@ -111,6 +111,7 @@
     <ClInclude Include="ParticleList.h" />
     <ClInclude Include="ParticlePool.h" />
     <ClInclude Include="ParticleProject.h" />
+    <ClInclude Include="RadiusDlg.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="stdafx.h" />
@@ -127,6 +128,7 @@
     <ClCompile Include="ParticleList.cpp" />
     <ClCompile Include="ParticlePool.cpp" />
     <ClCompile Include="ParticleProject.cpp" />
+    <ClCompile Include="RadiusDlg.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

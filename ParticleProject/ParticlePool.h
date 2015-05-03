@@ -21,6 +21,9 @@ public:
 	/** \brief Assignment operator disabled */
 	void operator=(const CParticlePool&) = delete;
 
+	double GetPraticleRadius() { return mParticleRadius; }
+	void SetParticleRadius(double value) { mParticleRadius = value; }
+
 	void Update(double delta);
 	void Draw();
 
@@ -30,5 +33,6 @@ private:
 
 	Vector3 mBaseVel;
 	double mBaseLifeTime;
+	double mParticleRadius;
 };
 

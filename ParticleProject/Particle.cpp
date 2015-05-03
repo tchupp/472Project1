@@ -25,6 +25,7 @@ CParticle::CParticle(Vector3 pos, Vector3 vel, double lifeTime)
 	mRed.LoadFile(L"textures/red.bmp");
 	mYellow.LoadFile(L"textures/yellow.bmp");
 	mBlue.LoadFile(L"textures/blue.bmp");
+	mPink.LoadFile(L"textures/pink.bmp");
 	int index = distribution(generator);
 	if (index == 0){
 		mSphere.SetTexture(&mGreen);
