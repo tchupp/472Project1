@@ -15,10 +15,8 @@ const int MaxAdded = 7; ///< will actually be total particles over time of anima
 /// total number of active snowflakes
 const int MaxActive = 100;
 
-int sign[2] = {-1, 1};
-std::uniform_real_distribution<double> velVariance(0.0, 0.3);
-std::uniform_real_distribution<double> lifeVariance(0.0, 0.3);
-std::uniform_real_distribution<double> radiusVariance(0.0, 0.3);
+const int sign[2] = {-1, 1};
+
 std::default_random_engine re;
 
 /**
@@ -30,8 +28,11 @@ CParticlePool::CParticlePool()
 	mBaseLifeTime = 5.0;
 	mBaseRadius = 0.3;
 	mParticleColor = -1;
+	mVelVariance = 0.2;
+	mLifeVariance = 0.2;
+	mRadiusVariance = 0.2;
 
-	for (int i = 0; i < 100; i++) 
+	for (int i = 0; i < 200; i++) 
 	{
 		mInactive.PushBack(std::make_shared<CParticle>());
 	}
@@ -67,6 +68,9 @@ void CParticlePool::Update(double delta)
 	Vector3 vel;
 	double lifeTime;
 	double radius;
+	std::uniform_real_distribution<double> velVariance(0.0, mVelVariance);
+	std::uniform_real_distribution<double> lifeVariance(0.0, mLifeVariance);
+	std::uniform_real_distribution<double> radiusVariance(0.0, mRadiusVariance);
 	while (mActive.GetSize() < MaxActive && numAdded < MaxAdded)
 	{
 		if (mInactive.GetSize())

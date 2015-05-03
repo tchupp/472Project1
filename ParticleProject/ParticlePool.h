@@ -9,7 +9,6 @@
 #pragma once
 #include "ParticleList.h"
 
-
 class CParticlePool
 {
 public:
@@ -37,5 +36,9 @@ private:
 	double mBaseLifeTime;
 	double mBaseRadius;
 	int mParticleColor;
+
+	double mVelVariance;
+	double mLifeVariance;
+	double mRadiusVariance;
 };
 
