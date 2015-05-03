@@ -16,7 +16,9 @@ const int MaxAdded = 7; ///< will actually be total particles over time of anima
 const int MaxActive = 100;
 
 int sign[2] = {-1, 1};
-std::uniform_real_distribution<double> variance(0.0, 0.3);
+std::uniform_real_distribution<double> velVariance(0.0, 0.3);
+std::uniform_real_distribution<double> lifeVariance(0.0, 0.3);
+std::uniform_real_distribution<double> radiusVariance(0.0, 0.3);
 std::default_random_engine re;
 
 /**
@@ -68,11 +70,11 @@ void CParticlePool::Update(double delta)
 	{
 		if (mInactive.GetSize())
 		{
-			vel.X = mBaseVel.X + mBaseVel.X * variance(re) * sign[rand() % 2];
-			vel.Y = mBaseVel.Y + mBaseVel.Y * variance(re) * sign[rand() % 2];
-			vel.Z = mBaseVel.Z + mBaseVel.Z * variance(re) * sign[rand() % 2];
-			lifeTime = mBaseLifeTime + (mBaseLifeTime * variance(re) * sign[rand() % 2]);
-			radius = mBaseRadius + mBaseRadius *  variance(re) * sign[rand() % 2];
+			vel.X = mBaseVel.X + mBaseVel.X * velVariance(re) * sign[rand() % 2];
+			vel.Y = mBaseVel.Y + mBaseVel.Y * velVariance(re) * sign[rand() % 2];
+			vel.Z = mBaseVel.Z + mBaseVel.Z * velVariance(re) * sign[rand() % 2];
+			lifeTime = mBaseLifeTime + (mBaseLifeTime * lifeVariance(re) * sign[rand() % 2]);
+			radius = mBaseRadius + mBaseRadius *  radiusVariance(re) * sign[rand() % 2];
 
 			auto particle = mInactive.GetHead();
 			mInactive.Remove(particle);
