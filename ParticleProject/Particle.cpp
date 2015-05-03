@@ -40,7 +40,6 @@ CParticle::CParticle(Vector3 pos, Vector3 vel, double lifeTime)
 	else{
 		mSphere.SetTexture(&mPink);
 	}
-	mSphere.SetTexture(&mGreen);
 
 }
 
