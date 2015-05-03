@@ -13,11 +13,11 @@
 const int MaxAdded = 7; ///< will actually be total particles over time of animation
 
 /// total number of active snowflakes
-const int MaxActive = 100;
+const int MaxActive = 100000;
 
-std::uniform_real_distribution<double> unif(-3.0, 3.0);
+std::uniform_real_distribution<double> unif(-5.0, 5.0);
 std::uniform_real_distribution<double> unif1(1.0, 3.0);
-std::uniform_real_distribution<double> unif2(1.0, 3.0);
+std::uniform_real_distribution<double> unif2(-5.0, 5.0);
 std::uniform_real_distribution<double> rand_lifetime(1.0, 3.0);
 std::default_random_engine re;
 
