@@ -43,4 +43,10 @@ public:
 	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnParticleRadius();
+	afx_msg void OnParticleGreen();
+	afx_msg void OnParticleRed();
+	afx_msg void OnParticleBlue();
+	afx_msg void OnParticleYello();
+	afx_msg void OnParticlePink();
+	afx_msg void OnParticleRandomcolors();
 };

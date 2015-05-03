@@ -34,6 +34,12 @@ BEGIN_MESSAGE_MAP(CChildView, COpenGLWnd)
 	ON_WM_RBUTTONDOWN()
 	ON_WM_TIMER()
 	ON_COMMAND(ID_PARTICLE_RADIUS, &CChildView::OnParticleRadius)
+	ON_COMMAND(ID_PARTICLE_GREEN, &CChildView::OnParticleGreen)
+	ON_COMMAND(ID_PARTICLE_RED, &CChildView::OnParticleRed)
+	ON_COMMAND(ID_PARTICLE_BLUE, &CChildView::OnParticleBlue)
+	ON_COMMAND(ID_PARTICLE_YELLO, &CChildView::OnParticleYello)
+	ON_COMMAND(ID_PARTICLE_PINK, &CChildView::OnParticlePink)
+	ON_COMMAND(ID_PARTICLE_RANDOMCOLORS, &CChildView::OnParticleRandomcolors)
 END_MESSAGE_MAP()
 
 
@@ -245,4 +251,40 @@ void CChildView::OnParticleRadius()
 
 		Invalidate();
 	}
+}
+
+
+void CChildView::OnParticleGreen()
+{
+	mParticle.SetParticleColor(1);
+}
+
+
+void CChildView::OnParticleRed()
+{
+	mParticle.SetParticleColor(2);
+}
+
+
+void CChildView::OnParticleBlue()
+{
+	mParticle.SetParticleColor(3);
+}
+
+
+void CChildView::OnParticleYello()
+{
+	mParticle.SetParticleColor(4);
+}
+
+
+void CChildView::OnParticlePink()
+{
+	mParticle.SetParticleColor(5);
+}
+
+
+void CChildView::OnParticleRandomcolors()
+{
+	mParticle.SetParticleColor(-1);
 }

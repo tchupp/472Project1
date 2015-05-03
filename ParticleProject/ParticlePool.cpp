@@ -26,8 +26,9 @@ std::default_random_engine re;
 /**
 * \brief Constructor
 */
-CParticlePool::CParticlePool() {
-
+CParticlePool::CParticlePool() 
+{
+	mParticleColor = -1;
 	mParticleRadius = .3;
 
 	for (int i = 0; i < 100; i++) {
@@ -77,6 +78,7 @@ void CParticlePool::Update(double delta)
 
 			auto particle = mInactive.GetHead();
 			mInactive.Remove(particle);
+			particle->SetColor(mParticleColor);
 			particle->Spawn(Vector3(0, 0, 0), Vector3(a_random_double, a_random_double2, a_random_double3), life_time);
 			mActive.PushBack(particle);
 		}
@@ -86,11 +88,14 @@ void CParticlePool::Update(double delta)
 	// update position of all the active particles
 	for (auto particle = mActive.GetHead(); particle != nullptr; particle = particle->GetNext())
 	{
-		particle->SetRadius(mParticleRadius);
+		if (particle->GetRadius() != mParticleRadius)
+		{
+			particle->SetRadius(mParticleRadius);
+		}
+
 		particle->Update(delta);
 	}
 }
-
 
 /**
 * \brief Draw all the particles in the active pool

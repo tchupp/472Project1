@@ -13,6 +13,8 @@ public:
 
     void SetRadius(double r) {m_radius = r;}
 
+	double GetRadius() { return m_radius; }
+
 	void SetTexture(CGrTexture *texture) { m_texture = texture;  }
 
 private:

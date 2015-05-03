@@ -24,6 +24,8 @@ public:
 	double GetPraticleRadius() { return mParticleRadius; }
 	void SetParticleRadius(double value) { mParticleRadius = value; }
 
+	void SetParticleColor(int color) { mParticleColor = color; }
+
 	void Update(double delta);
 	void Draw();
 
@@ -32,5 +34,6 @@ private:
 	CParticleList mInactive; ///< list of inactive particles
 
 	double mParticleRadius;
+	int mParticleColor;
 };
 
