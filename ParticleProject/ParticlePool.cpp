@@ -18,6 +18,7 @@ const int MaxActive = 100;
 std::uniform_real_distribution<double> unif(-3.0, 3.0);
 std::uniform_real_distribution<double> unif1(1.0, 3.0);
 std::uniform_real_distribution<double> unif2(1.0, 3.0);
+std::uniform_real_distribution<double> rand_lifetime(1.0, 3.0);
 std::default_random_engine re;
 
 /**
@@ -28,7 +29,7 @@ CParticlePool::CParticlePool() {
 		double a_random_double = unif(re);
 		double a_random_double2 = unif(re);
 		double a_random_double3 = unif(re);
-		double life_time = 3;
+		double life_time = rand_lifetime(re);
 		mActive.PushBack(std::make_shared<CParticle>(Vector3(0, 0, 0), Vector3(a_random_double, a_random_double2, a_random_double3), life_time));
 	}
 }
@@ -67,7 +68,7 @@ void CParticlePool::Update(double delta)
 			double a_random_double = unif(re);
 			double a_random_double2 = unif1(re);
 			double a_random_double3 = unif2(re);
-			double life_time = 3;
+			double life_time = rand_lifetime(re);
 
 			auto particle = mInactive.GetHead();
 			mInactive.Remove(particle);
