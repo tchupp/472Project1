@@ -15,7 +15,7 @@ inline void Normalize3(GLdouble *v)
 
 CSphere::CSphere(void)
 {
-    m_radius = .3;
+    m_radius = 0.3;
 }
 
 

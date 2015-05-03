@@ -20,7 +20,7 @@
 class CParticle : public COpenGLWnd
 {
 public:
-	CParticle(Vector3 pos, Vector3 vel, double lifeTime);
+	CParticle(Vector3 pos, Vector3 vel, double lifeTime, double radius);
 	virtual ~CParticle();
 
 	/** \brief Default constructor disabled */
@@ -29,7 +29,7 @@ public:
 	CParticle(const CParticle &) = delete;
 	/** \brief Assignment operator disabled */
 	void operator=(const CParticle &) = delete;
-	void Spawn(Vector3 pos, Vector3 vel, double lifeTime);
+	void Spawn(Vector3 pos, Vector3 vel, double lifeTime, double radius);
 	bool Dead();
 	void SetRadius(double value) { mSphere.SetRadius(value); }
 	void Update(double delta);

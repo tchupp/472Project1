@@ -16,7 +16,6 @@ const int MaxAdded = 7; ///< will actually be total particles over time of anima
 const int MaxActive = 100;
 
 int sign[2] = {-1, 1};
-//std::uniform_real_distribution<int> sign(0, 1);
 std::uniform_real_distribution<double> variance(0.0, 0.3);
 std::default_random_engine re;
 
@@ -27,6 +26,7 @@ CParticlePool::CParticlePool()
 {
 	mBaseVel = Vector3(5.0, 20.0, 5.0);
 	mBaseLifeTime = 5.0;
+	mBaseRadius = 0.3;
 
 	for (int i = 0; i < 100; i++) 
 	{
@@ -63,19 +63,20 @@ void CParticlePool::Update(double delta)
 	auto numAdded = 0;
 	Vector3 vel;
 	double lifeTime;
+	double radius;
 	while (mActive.GetSize() < MaxActive && numAdded < MaxAdded)
 	{
 		if (mInactive.GetSize())
 		{
-
 			vel.X = mBaseVel.X + mBaseVel.X * variance(re) * sign[rand() % 2];
 			vel.Y = mBaseVel.Y + mBaseVel.Y * variance(re) * sign[rand() % 2];
 			vel.Z = mBaseVel.Z + mBaseVel.Z * variance(re) * sign[rand() % 2];
 			lifeTime = mBaseLifeTime + (mBaseLifeTime * variance(re) * sign[rand() % 2]);
+			radius = mBaseRadius + mBaseRadius *  variance(re) * sign[rand() % 2];
 
 			auto particle = mInactive.GetHead();
 			mInactive.Remove(particle);
-			particle->Spawn(Vector3(0, 0, 0), vel, lifeTime);
+			particle->Spawn(Vector3(0, 0, 0), vel, lifeTime, radius);
 			mActive.PushBack(particle);
 		}
 		numAdded++;
@@ -84,7 +85,6 @@ void CParticlePool::Update(double delta)
 	// update position of all the active particles
 	for (auto particle = mActive.GetHead(); particle != nullptr; particle = particle->GetNext())
 	{
-		particle->SetRadius(mParticleRadius);
 		particle->Update(delta);
 	}
 }

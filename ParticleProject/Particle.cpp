@@ -18,9 +18,9 @@ std::uniform_int_distribution<int> distribution(0, 5);
 /**
 * \brief Constructor
 */
-CParticle::CParticle(Vector3 pos, Vector3 vel, double lifeTime)
+CParticle::CParticle(Vector3 pos, Vector3 vel, double lifeTime, double radius)
 {
-	Spawn(pos, vel, lifeTime);
+	Spawn(pos, vel, lifeTime, radius);
 	mGreen.LoadFile(L"textures/green.bmp");
 	mRed.LoadFile(L"textures/red.bmp");
 	mYellow.LoadFile(L"textures/yellow.bmp");
@@ -52,7 +52,7 @@ CParticle::CParticle(Vector3 pos, Vector3 vel, double lifeTime)
 */
 CParticle::~CParticle() {}
 
-CParticle::CParticle() : CParticle(Vector3(0.0, 0.0, 0.0), Vector3(0.0, 0.0, 0.0), 0.0) {}
+CParticle::CParticle() : CParticle(Vector3(0.0, 0.0, 0.0), Vector3(0.0, 0.0, 0.0), 0.0, 0.3) {}
 
 /**
 * \brief updates the x and y position based on the velocity and change in time
@@ -80,11 +80,13 @@ void CParticle::Update(double delta)
 	mLifeTime -= delta;
 }
 
-void CParticle::Spawn(Vector3 pos, Vector3 vel, double lifeTime){
+void CParticle::Spawn(Vector3 pos, Vector3 vel, double lifeTime, double radius)
+{
 	mPos = pos;
 	mVel = vel;
 	mAcc = Vector3(0.0, -20.0, 0.0);
 	mLifeTime = lifeTime;
+	SetRadius(radius);
 }
 
 bool CParticle::Dead(){
