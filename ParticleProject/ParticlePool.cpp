@@ -13,26 +13,24 @@
 const int MaxAdded = 7; ///< will actually be total particles over time of animation
 
 /// total number of active snowflakes
-const int MaxActive = 100000;
+const int MaxActive = 100;
 
-
-
-std::uniform_real_distribution<double> unif(-5.0, 5.0);
-std::uniform_real_distribution<double> unif1(1.0, 3.0);
-std::uniform_real_distribution<double> unif2(-5.0, 5.0);
-std::uniform_real_distribution<double> rand_lifetime(0.5, 1.0);
+int sign[2] = {-1, 1};
+//std::uniform_real_distribution<int> sign(0, 1);
+std::uniform_real_distribution<double> variance(0.0, 0.3);
 std::default_random_engine re;
 
 /**
 * \brief Constructor
 */
-CParticlePool::CParticlePool() {
-	for (int i = 0; i < 100; i++) {
-		double a_random_double = unif(re);
-		double a_random_double2 = unif(re);
-		double a_random_double3 = unif(re);
-		double life_time = rand_lifetime(re);
-		mActive.PushBack(std::make_shared<CParticle>(Vector3(0, 0, 0), Vector3(a_random_double, a_random_double2, a_random_double3), life_time));
+CParticlePool::CParticlePool() 
+{
+	mBaseVel = Vector3(5.0, 20.0, 5.0);
+	mBaseLifeTime = 5.0;
+
+	for (int i = 0; i < 100; i++) 
+	{
+		mInactive.PushBack(std::make_shared<CParticle>());
 	}
 }
 
@@ -63,18 +61,21 @@ void CParticlePool::Update(double delta)
 
 	// add more particles if needed
 	auto numAdded = 0;
+	Vector3 vel;
+	double lifeTime;
 	while (mActive.GetSize() < MaxActive && numAdded < MaxAdded)
 	{
 		if (mInactive.GetSize())
 		{
-			double a_random_double = unif(re);
-			double a_random_double2 = unif1(re);
-			double a_random_double3 = unif2(re);
-			double life_time = rand_lifetime(re);
+
+			vel.X = mBaseVel.X + mBaseVel.X * variance(re) * sign[rand() % 2];
+			vel.Y = mBaseVel.Y + mBaseVel.Y * variance(re) * sign[rand() % 2];
+			vel.Z = mBaseVel.Z + mBaseVel.Z * variance(re) * sign[rand() % 2];
+			lifeTime = mBaseLifeTime + (mBaseLifeTime * variance(re) * sign[rand() % 2]);
 
 			auto particle = mInactive.GetHead();
 			mInactive.Remove(particle);
-			particle->Spawn(Vector3(0, 0, 0), Vector3(a_random_double, a_random_double2, a_random_double3), life_time);
+			particle->Spawn(Vector3(0, 0, 0), vel, lifeTime);
 			mActive.PushBack(particle);
 		}
 		numAdded++;

@@ -27,5 +27,8 @@ public:
 private:
 	CParticleList mActive; ///< list of active particles
 	CParticleList mInactive; ///< list of inactive particles
+
+	Vector3 mBaseVel;
+	double mBaseLifeTime;
 };
 

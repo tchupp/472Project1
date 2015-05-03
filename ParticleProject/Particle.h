@@ -24,7 +24,7 @@ public:
 	virtual ~CParticle();
 
 	/** \brief Default constructor disabled */
-	CParticle() = delete;
+	CParticle();
 	/** \brief Copy constructor disabled */
 	CParticle(const CParticle &) = delete;
 	/** \brief Assignment operator disabled */
@@ -43,7 +43,7 @@ public:
 private:
 	Vector3 mPos;
 	Vector3 mVel;
-	double mTotal = 0;
+	Vector3 mAcc;
 	double mLifeTime;
 
 	CSphere mSphere;
