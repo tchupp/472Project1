@@ -29,6 +29,7 @@ CParticlePool::CParticlePool()
 	mBaseVel = Vector3(5.0, 20.0, 5.0);
 	mBaseLifeTime = 5.0;
 	mBaseRadius = 0.3;
+	mParticleColor = -1;
 
 	for (int i = 0; i < 100; i++) 
 	{
@@ -78,7 +79,9 @@ void CParticlePool::Update(double delta)
 
 			auto particle = mInactive.GetHead();
 			mInactive.Remove(particle);
+			particle->SetColor(mParticleColor);
 			particle->Spawn(Vector3(0, 0, 0), vel, lifeTime, radius);
+
 			mActive.PushBack(particle);
 		}
 		numAdded++;
@@ -90,7 +93,6 @@ void CParticlePool::Update(double delta)
 		particle->Update(delta);
 	}
 }
-
 
 /**
 * \brief Draw all the particles in the active pool

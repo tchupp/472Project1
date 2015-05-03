@@ -32,6 +32,8 @@ public:
 	void Spawn(Vector3 pos, Vector3 vel, double lifeTime, double radius);
 	bool Dead();
 	void SetRadius(double value) { mSphere.SetRadius(value); }
+	double GetRadius() { return mSphere.GetRadius(); }
+	void SetColor(int value);
 	void Update(double delta);
 	void Draw();
 
@@ -48,6 +50,7 @@ private:
 	double mLifeTime;
 
 	CSphere mSphere;
+
 	CGrTexture mGreen;
 	CGrTexture mRed;
 	CGrTexture mBlue;

@@ -24,6 +24,8 @@ public:
 	double GetPraticleRadius() { return mBaseRadius; }
 	void SetParticleRadius(double value) { mBaseRadius = value; }
 
+	void SetParticleColor(int color) { mParticleColor = color; }
+
 	void Update(double delta);
 	void Draw();
 
@@ -34,5 +36,6 @@ private:
 	Vector3 mBaseVel;
 	double mBaseLifeTime;
 	double mBaseRadius;
+	int mParticleColor;
 };
 

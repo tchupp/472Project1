@@ -124,6 +124,12 @@ BEGIN
     POPUP "&Particle"
     BEGIN
         MENUITEM "Radius",                      ID_PARTICLE_RADIUS
+        MENUITEM "Green",                       ID_PARTICLE_GREEN
+        MENUITEM "Red",                         ID_PARTICLE_RED
+        MENUITEM "Blue",                        ID_PARTICLE_BLUE
+        MENUITEM "Yellow",                      ID_PARTICLE_YELLO
+        MENUITEM "Pink",                        ID_PARTICLE_PINK
+        MENUITEM "Random Colors",               ID_PARTICLE_RANDOMCOLORS
     END
 END
 
