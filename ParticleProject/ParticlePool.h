@@ -21,8 +21,8 @@ public:
 	/** \brief Assignment operator disabled */
 	void operator=(const CParticlePool&) = delete;
 
-	double GetPraticleRadius() { return mParticleRadius; }
-	void SetParticleRadius(double value) { mParticleRadius = value; }
+	double GetPraticleRadius() { return mBaseRadius; }
+	void SetParticleRadius(double value) { mBaseRadius = value; }
 
 	void SetParticleColor(int color) { mParticleColor = color; }
 
@@ -33,7 +33,9 @@ private:
 	CParticleList mActive; ///< list of active particles
 	CParticleList mInactive; ///< list of inactive particles
 
-	double mParticleRadius;
+	Vector3 mBaseVel;
+	double mBaseLifeTime;
+	double mBaseRadius;
 	int mParticleColor;
 };
 

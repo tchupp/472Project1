@@ -20,16 +20,16 @@
 class CParticle : public COpenGLWnd
 {
 public:
-	CParticle(Vector3 pos, Vector3 vel, double lifeTime);
+	CParticle(Vector3 pos, Vector3 vel, double lifeTime, double radius);
 	virtual ~CParticle();
 
 	/** \brief Default constructor disabled */
-	CParticle() = delete;
+	CParticle();
 	/** \brief Copy constructor disabled */
 	CParticle(const CParticle &) = delete;
 	/** \brief Assignment operator disabled */
 	void operator=(const CParticle &) = delete;
-	void Spawn(Vector3 pos, Vector3 vel, double lifeTime);
+	void Spawn(Vector3 pos, Vector3 vel, double lifeTime, double radius);
 	bool Dead();
 	void SetRadius(double value) { mSphere.SetRadius(value); }
 	double GetRadius() { return mSphere.GetRadius(); }
@@ -46,7 +46,7 @@ public:
 private:
 	Vector3 mPos;
 	Vector3 mVel;
-	double mTotal = 0;
+	Vector3 mAcc;
 	double mLifeTime;
 
 	CSphere mSphere;

@@ -8,6 +8,7 @@
 #include "Particle.h"
 #include "graphics/GrTexture.h"
 #include <random>
+#include "math.h"
 
 
 std::default_random_engine generator;
@@ -17,15 +18,15 @@ std::uniform_int_distribution<int> distribution(0, 5);
 /**
 * \brief Constructor
 */
-CParticle::CParticle(Vector3 pos, Vector3 vel, double lifeTime)
+CParticle::CParticle(Vector3 pos, Vector3 vel, double lifeTime, double radius)
 {
+	Spawn(pos, vel, lifeTime, radius);
 	mGreen.LoadFile(L"textures/green.bmp");
 	mRed.LoadFile(L"textures/red.bmp");
 	mBlue.LoadFile(L"textures/blue.bmp");
 	mPink.LoadFile(L"textures/pink.bmp");
 	mYellow.LoadFile(L"textures/yellow.bmp");
 
-	Spawn(pos, vel, lifeTime);
 	SetColor(-1);
 }
 
@@ -36,6 +37,7 @@ CParticle::CParticle(Vector3 pos, Vector3 vel, double lifeTime)
 */
 CParticle::~CParticle() {}
 
+CParticle::CParticle() : CParticle(Vector3(0.0, 0.0, 0.0), Vector3(0.0, 0.0, 0.0), 0.0, 0.3) {}
 
 /**
 * \brief updates the x and y position based on the velocity and change in time
@@ -43,21 +45,33 @@ CParticle::~CParticle() {}
 */
 void CParticle::Update(double delta)
 {
-	mTotal += delta;
+	// update velocity
+	mVel.X += mAcc.X * delta;
+	mVel.Y += mAcc.Y * delta;
+	mVel.Z += mAcc.Z * delta;
+
+	// update position
 	mPos.X += mVel.X * delta;
-	mPos.Y += (mVel.Y * delta*10.0) - mTotal;
-	//mPos.Y -= (mTotal*delta);
+	mPos.Y += mVel.Y * delta;
 	mPos.Z += mVel.Z * delta;
+
+	// bounce
+	if (mPos.Y < 0 && mVel.Y < 0)
+	{
+		mVel.Y = abs(mVel.Y / 1.2);
+	}
 
 	//update lifetime
 	mLifeTime -= delta;
 }
 
-void CParticle::Spawn(Vector3 pos, Vector3 vel, double lifeTime){
+void CParticle::Spawn(Vector3 pos, Vector3 vel, double lifeTime, double radius)
+{
 	mPos = pos;
 	mVel = vel;
+	mAcc = Vector3(0.0, -20.0, 0.0);
 	mLifeTime = lifeTime;
-	mTotal = 0;
+	SetRadius(radius);
 }
 
 bool CParticle::Dead(){
