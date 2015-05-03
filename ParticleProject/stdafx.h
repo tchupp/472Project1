@@ -60,5 +60,5 @@ struct Vector3
 	double Z;
 
 	Vector3() : X(0), Y(0), Z(0) {};
-	Vector3(double x, double y, double z) : X(x), Y(y), Z(z) {}
+	Vector3(double x, double y, double z) : X(x), Y(y), Z(z) {};
 };

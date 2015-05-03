@@ -13,11 +13,11 @@
 const int MaxAdded = 7; ///< will actually be total particles over time of animation
 
 /// total number of active snowflakes
-const int MaxActive = 100;
+const int MaxActive = 10000;
 
 std::uniform_real_distribution<double> unif(-3.0, 3.0);
 std::uniform_real_distribution<double> unif1(1.0, 3.0);
-std::uniform_real_distribution<double> unif2(1.0, 3.0);
+std::uniform_real_distribution<double> unif2(-3.0, 3.0);
 std::uniform_real_distribution<double> rand_lifetime(1.0, 3.0);
 std::default_random_engine re;
 
@@ -25,12 +25,14 @@ std::default_random_engine re;
 * \brief Constructor
 */
 CParticlePool::CParticlePool() {
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 10000; i++) 
+	{
 		double a_random_double = unif(re);
 		double a_random_double2 = unif(re);
 		double a_random_double3 = unif(re);
 		double life_time = rand_lifetime(re);
-		mActive.PushBack(std::make_shared<CParticle>(Vector3(0, 0, 0), Vector3(a_random_double, a_random_double2, a_random_double3), life_time));
+		mInactive.PushBack(std::make_shared<CParticle>(Vector3(0, 0, 0), Vector3(a_random_double, a_random_double2, a_random_double3), life_time));
+		//mActive.PushBack(std::make_shared<CParticle>(Vector3(0, 0, 0), Vector3(a_random_double, a_random_double2, a_random_double3), life_time));
 	}
 }
 
@@ -38,7 +40,7 @@ CParticlePool::CParticlePool() {
 /**
 * \brief Destructor
 */
-CParticlePool::~CParticlePool() {}
+CParticlePool::~CParticlePool(){}
 
 
 /**

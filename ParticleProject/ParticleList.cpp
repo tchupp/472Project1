@@ -25,7 +25,10 @@ CParticleList::CParticleList()
 /**
 * \brief Destructor
 */
-CParticleList::~CParticleList() {}
+CParticleList::~CParticleList()
+{
+	
+}
 
 
 /**
