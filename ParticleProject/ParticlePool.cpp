@@ -27,6 +27,9 @@ std::default_random_engine re;
 * \brief Constructor
 */
 CParticlePool::CParticlePool() {
+
+	mParticleRadius = .3;
+
 	for (int i = 0; i < 100; i++) {
 		double a_random_double = unif(re);
 		double a_random_double2 = unif(re);
@@ -83,6 +86,7 @@ void CParticlePool::Update(double delta)
 	// update position of all the active particles
 	for (auto particle = mActive.GetHead(); particle != nullptr; particle = particle->GetNext())
 	{
+		particle->SetRadius(mParticleRadius);
 		particle->Update(delta);
 	}
 }

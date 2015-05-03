@@ -31,6 +31,7 @@ public:
 	void operator=(const CParticle &) = delete;
 	void Spawn(Vector3 pos, Vector3 vel, double lifeTime);
 	bool Dead();
+	void SetRadius(double value) { mSphere.SetRadius(value); }
 	void Update(double delta);
 	void Draw();
 

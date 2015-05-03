@@ -60,6 +60,9 @@
     <ClInclude Include="graphics\GrTexture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RadiusDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ParticleProject.cpp">
@@ -96,6 +99,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="graphics\GrTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RadiusDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

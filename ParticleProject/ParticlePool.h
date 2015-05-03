@@ -21,11 +21,16 @@ public:
 	/** \brief Assignment operator disabled */
 	void operator=(const CParticlePool&) = delete;
 
+	double GetPraticleRadius() { return mParticleRadius; }
+	void SetParticleRadius(double value) { mParticleRadius = value; }
+
 	void Update(double delta);
 	void Draw();
 
 private:
 	CParticleList mActive; ///< list of active particles
 	CParticleList mInactive; ///< list of inactive particles
+
+	double mParticleRadius;
 };
 

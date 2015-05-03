@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "ParticleProject.h"
 #include "ChildView.h"
+#include "RadiusDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -32,6 +33,7 @@ BEGIN_MESSAGE_MAP(CChildView, COpenGLWnd)
 	ON_WM_MOUSEMOVE()
 	ON_WM_RBUTTONDOWN()
 	ON_WM_TIMER()
+	ON_COMMAND(ID_PARTICLE_RADIUS, &CChildView::OnParticleRadius)
 END_MESSAGE_MAP()
 
 
@@ -228,4 +230,19 @@ void CChildView::OnTimer(UINT_PTR nIDEvent)
 	// TODO: Add your message handler code here and/or call default
 	Invalidate();
 	COpenGLWnd::OnTimer(nIDEvent);
+}
+
+
+void CChildView::OnParticleRadius()
+{
+	CRadiusDlg dlg;
+
+	dlg.mRadius = mParticle.GetPraticleRadius();
+
+	if (dlg.DoModal() == IDOK)
+	{
+		mParticle.SetParticleRadius(dlg.mRadius);
+
+		Invalidate();
+	}
 }
