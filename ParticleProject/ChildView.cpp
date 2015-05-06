@@ -117,14 +117,11 @@ void CChildView::OnGLDraw(CDC* pDC)
 	glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
 	glPopMatrix();
 
-	// Draw cube
-	//const double RED[] = {0.7, 0.0, 0.0};
-	//glPushMatrix();
-	//glTranslated(1.5, 1.5, 1.5);
-	//glRotated(45.0, 45.0, 45.0, 1.);
-	//glTranslated(-1.5, -1.5, -1.5);
-	//Box(3., 3., 3., RED);
-	//glPopMatrix();
+	// Drawing the floor
+	glPushMatrix();
+	mFloor.SetHeight(-1 * mParticlePool.GetParticleRadius());
+	mFloor.Draw();
+	glPopMatrix();
 
 	//Drawing the particles
 	mParticlePool.Draw();
@@ -134,16 +131,16 @@ void CChildView::OnGLDraw(CDC* pDC)
 	glDisable(GL_LIGHT0);
 
 	// Draw a coordinate axis
-	glColor3d(0., 1., 1.);
-
-	glBegin(GL_LINES);
-	glVertex3d(0., 0., 0.);
-	glVertex3d(12., 0., 0.);
-	glVertex3d(0., 0., 0.);
-	glVertex3d(0., 12., 0.);
-	glVertex3d(0., 0., 0.);
-	glVertex3d(0., 0., 12.);
-	glEnd();
+//	glColor3d(0., 1., 1.);
+//
+//	glBegin(GL_LINES);
+//	glVertex3d(0., 0., 0.);
+//	glVertex3d(12., 0., 0.);
+//	glVertex3d(0., 0., 0.);
+//	glVertex3d(0., 12., 0.);
+//	glVertex3d(0., 0., 0.);
+//	glVertex3d(0., 0., 12.);
+//	glEnd();
 }
 
 //

@@ -7,6 +7,7 @@
 #include "graphics/OpenGLWnd.h"
 #include "graphics/GrCamera.h"
 #include "ParticlePool.h"
+#include "Floor.h"
 
 // CChildView window
 
@@ -27,6 +28,7 @@ private:
 private:
 	CGrCamera m_camera;
 	CParticlePool mParticlePool;
+	CFloor mFloor;
 
 	/// True until the first time we draw
 	bool mFirstDraw = true;
