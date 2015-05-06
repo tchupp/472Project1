@@ -244,6 +244,8 @@ void CChildView::OnParticleProp()
 	dlg.mRadVar = mParticlePool.GetParticleRadiusVar();
 	dlg.mBaseRadius = mParticlePool.GetParticleRadius();
 
+	dlg.mMotionBlur = GetMotionBlur();
+
 	if (dlg.DoModal() == IDOK)
 	{
 		mParticlePool.SetParticleColor(dlg.mColor);
@@ -257,5 +259,6 @@ void CChildView::OnParticleProp()
 		mParticlePool.SetParticleRadiusVar(dlg.mRadVar);
 		mParticlePool.SetParticleRadius(dlg.mBaseRadius);
 
+		SetMotionBlur(dlg.mMotionBlur);
 	}
 }

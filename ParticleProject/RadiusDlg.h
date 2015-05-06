@@ -35,4 +35,9 @@ public:
 	afx_msg void OnBnClickedRandomRadio();
 	double mLifeVar;
 	double mRadVar;
+
+	bool mUseMotionBlur = false;
+
+	
+	int mMotionBlur;		// # motion blur frames
 };

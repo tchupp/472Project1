@@ -21,6 +21,7 @@ CRadiusDlg::CRadiusDlg(CWnd* pParent /*=NULL*/)
 	, mVelVar(0)
 	, mLifeVar(0)
 	, mRadVar(0)
+	, mMotionBlur(0)
 {
 
 }
@@ -48,6 +49,8 @@ void CRadiusDlg::DoDataExchange(CDataExchange* pDX)
 	DDV_MinMaxDouble(pDX, mLifeVar, 0, .5);
 	DDX_Text(pDX, IDC_RAD_VAR_EDIT, mRadVar);
 	DDV_MinMaxDouble(pDX, mRadVar, 0, .5);
+	DDX_Text(pDX, IDC_EDIT1, mMotionBlur);
+	DDV_MinMaxInt(pDX, mMotionBlur, 0, 10);
 }
 
 

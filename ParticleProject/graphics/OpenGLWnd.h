@@ -38,6 +38,9 @@ public:
 
     HGLRC HGLRc() {return m_hrc;}
 
+	int GetMotionBlur() { return mMotionBlurFrames; }
+	void SetMotionBlur(int frames) { mMotionBlurFrames = frames; }
+
     // Generated message map functions
 protected:
     void SetDoubleBuffer(bool p_doublebuffer);
@@ -52,6 +55,10 @@ protected:
 
 private:
     int FormattedErrorAfxMsgBox(const char *p_msg);
+
+	// Handling motion blur
+	int mMotionBlurFrames = 1;				// How many frames we should average to acheive motion blur 
+	int mMotionBlurFrameCount = 0;			// Current frame count
 
     bool m_created;
     bool m_doublebuffer;

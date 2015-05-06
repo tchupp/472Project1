@@ -287,15 +287,31 @@ void COpenGLWnd::OnPaint()
 	// Draw	
 	OnGLDraw(&dc);
 
-	//Swap Buffers
-	if(m_doublebuffer)
-      SwapBuffers(dc.m_hDC) ;
+	// If we have no frames in our blur average, intiialize. If we do already have GL_ buffer loaded, accumluate more frames.
+	(mMotionBlurFrameCount == 0) ? glAccum(GL_LOAD, 1.0 / mMotionBlurFrames) : glAccum(GL_ACCUM, 1.0 / mMotionBlurFrames);
 
-    // select old palette if we altered it
-    if (ppalOld) 
-        dc.SelectPalette(ppalOld, 0); 
+	// Increment the frame count
+	mMotionBlurFrameCount++;
 
-	wglMakeCurrent(NULL, NULL) ;
+	// If we have satisfied the quota, restart count and swap buffers
+	if (mMotionBlurFrameCount >= mMotionBlurFrames)
+	{
+		// Reset
+		mMotionBlurFrameCount = 0;
+
+		// Empty and reset accum buffer
+		glAccum(GL_RETURN, 1.0);
+
+		//Swap Buffers
+		if (m_doublebuffer)
+			SwapBuffers(dc.m_hDC);
+
+		// select old palette if we altered it
+		if (ppalOld)
+			dc.SelectPalette(ppalOld, 0);
+
+		wglMakeCurrent(NULL, NULL);
+	}
 }
 
 

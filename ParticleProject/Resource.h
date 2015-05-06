@@ -21,6 +21,7 @@
 #define IDC_LIFE_VAR_EDIT               1012
 #define IDC_EDIT7                       1013
 #define IDC_RAD_VAR_EDIT                1013
+#define IDC_EDIT1                       1014
 #define ID_PARTICLE                     32771
 #define ID_PARTICLE_RADIUS              32772
 #define ID_PARTICLE_GREEN               32773
@@ -37,7 +38,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        312
 #define _APS_NEXT_COMMAND_VALUE         32780
-#define _APS_NEXT_CONTROL_VALUE         1014
+#define _APS_NEXT_CONTROL_VALUE         1015
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif
