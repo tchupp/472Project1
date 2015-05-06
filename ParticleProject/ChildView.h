@@ -28,7 +28,9 @@ private:
 private:
 	CGrCamera m_camera;
 	CParticlePool mParticlePool;
+
 	CFloor mFloor;
+	CGrTexture mBoxTexture;
 
 	/// True until the first time we draw
 	bool mFirstDraw = true;
@@ -45,4 +47,6 @@ public:
 	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnParticleProp();
+
+	void Quad(GLdouble* v1, GLdouble* v2, GLdouble* v3, GLdouble* v4, int tiles=1);
 };

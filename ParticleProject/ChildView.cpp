@@ -19,7 +19,7 @@ const int FrameDuration = 30;
 CChildView::CChildView()
 {
 	m_camera.Set(20, 10, 50, 0, 0, 0, 0, 1, 0);
-
+	mBoxTexture.LoadFile(L"textures/plank01.bmp");
 }
 
 CChildView::~CChildView()
@@ -117,9 +117,28 @@ void CChildView::OnGLDraw(CDC* pDC)
 	glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
 	glPopMatrix();
 
+//	GLfloat secondLightPos[] = { 0., 2.0, 2.0, 0. };
+//	glPushMatrix();
+//	glTranslated(0., 2.0, 2.0);
+//	glRotated(45.0, 1, 0, 1);
+//	glTranslated(0., -2.0, -2.0);
+//	glLightfv(GL_LIGHT0, GL_POSITION, secondLightPos);
+//	glPopMatrix();
+
+	// Drawing our box (the object)
+	const double RED[] = { 0.7, 0.0, 0.0 };
+	double spinAngle = 0.;
+	glPushMatrix();
+	glTranslated(1.5, 1.5, 1.5);
+	glRotated(spinAngle, 0., 0., 1.);
+	glTranslated(-1.5, -1.5, -1.5);
+	Box(3., 3., 3., RED);
+	glPopMatrix();
+
 	// Drawing the floor
 	glPushMatrix();
 	mFloor.SetHeight(-1 * mParticlePool.GetParticleRadius());
+	mFloor.SetLength(50.);
 	mFloor.Draw();
 	glPopMatrix();
 
@@ -144,21 +163,6 @@ void CChildView::OnGLDraw(CDC* pDC)
 }
 
 //
-//        Name : Quad()
-// Description : Inline function for drawing 
-//               a quadralateral.
-//
-inline void Quad(GLdouble* v1, GLdouble* v2, GLdouble* v3, GLdouble* v4)
-{
-	glBegin(GL_QUADS);
-	glVertex3dv(v1);
-	glVertex3dv(v2);
-	glVertex3dv(v3);
-	glVertex3dv(v4);
-	glEnd();
-}
-
-//
 //        Name : CChildView::Box()
 // Description : Draw an arbitrary size box. p_x, 
 //               p_y, an p_z are the height of
@@ -170,14 +174,20 @@ inline void Quad(GLdouble* v1, GLdouble* v2, GLdouble* v3, GLdouble* v4)
 //
 void CChildView::Box(GLdouble p_x, GLdouble p_y, GLdouble p_z, const GLdouble* p_color)
 {
-	GLdouble a[] = {0., 0., p_z};
-	GLdouble b[] = {p_x, 0., p_z};
-	GLdouble c[] = {p_x, p_y, p_z};
-	GLdouble d[] = {0., p_y, p_z};
-	GLdouble e[] = {0., 0., 0.};
-	GLdouble f[] = {p_x, 0., 0.};
-	GLdouble g[] = {p_x, p_y, 0.};
-	GLdouble h[] = {0., p_y, 0.};
+	GLdouble shift[] = { -3., 0., -3. };
+
+	GLdouble a[] = { 0. + shift[0], 0. + shift[1], p_z + shift[2] };
+	GLdouble b[] = { p_x + shift[0], 0. + shift[1], p_z + shift[2] };
+	GLdouble c[] = { p_x + shift[0], p_y + shift[1], p_z + shift[2] };
+	GLdouble d[] = { 0. + shift[0], p_y + shift[1], p_z + shift[2] };
+	GLdouble e[] = { 0. + shift[0], 0. + shift[1], 0. + shift[2] };
+	GLdouble f[] = { p_x + shift[0], 0. + shift[1], 0. + shift[2] };
+	GLdouble g[] = { p_x + shift[0], p_y + shift[1], 0. + shift[2] };
+	GLdouble h[] = { 0. + shift[0], p_y + shift[1], 0. + shift[2] };
+
+	glEnable(GL_TEXTURE_2D);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	glBindTexture(GL_TEXTURE_2D, mBoxTexture.TexName());
 
 	glNormal3d(0., 0., 1.);
 	Quad(a, b, c, d); // Front
@@ -196,6 +206,8 @@ void CChildView::Box(GLdouble p_x, GLdouble p_y, GLdouble p_z, const GLdouble* p
 
 	glNormal3d(0., -1., 0.);
 	Quad(e, f, b, a); // Bottom
+
+	glDisable(GL_TEXTURE_2D);
 }
 
 void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
@@ -261,4 +273,21 @@ void CChildView::OnParticleProp()
 
 		SetMotionBlur(dlg.mMotionBlur);
 	}
+}
+
+/*
+	Draws a quad, and tiles appropriately (default 1)
+*/
+void CChildView::Quad(GLdouble* v1, GLdouble* v2, GLdouble* v3, GLdouble* v4, int tiles)
+{
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 0);
+	glVertex3dv(v1);
+	glTexCoord2f(tiles, 0);
+	glVertex3dv(v2);
+	glTexCoord2f(tiles, tiles);
+	glVertex3dv(v3);
+	glTexCoord2f(0, tiles);
+	glVertex3dv(v4);
+	glEnd();
 }

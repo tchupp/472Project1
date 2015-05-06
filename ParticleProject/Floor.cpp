@@ -16,23 +16,19 @@ CFloor::~CFloor()
 //        Name : Quad()
 // Description : Inline function for drawing 
 //               a quadralateral.
+//			* The number of tiles will be = tiles * tiles
 //
-inline void Quad(GLdouble* v1, GLdouble* v2, GLdouble* v3, GLdouble* v4)
+inline void Quad(GLdouble* v1, GLdouble* v2, GLdouble* v3, GLdouble* v4, int tiles=1)
 {
 	glBegin(GL_QUADS);
-
-	glTexCoord2d(0., 0.);
+	glTexCoord2f(0, 0);
 	glVertex3dv(v1);
-
-	glTexCoord2d(1., 0.);
+	glTexCoord2f(tiles, 0);
 	glVertex3dv(v2);
-
-	glTexCoord2d(0., 1.);
+	glTexCoord2f(tiles, tiles);
 	glVertex3dv(v3);
-
-	glTexCoord2d(1., 1.);
+	glTexCoord2f(0, tiles);
 	glVertex3dv(v4);
-
 	glEnd();
 }
 
@@ -44,12 +40,12 @@ void CFloor::Draw()
 	glBindTexture(GL_TEXTURE_2D, mTexture.TexName());
 
 	GLdouble a[] = { 0., mHeight, 0. };
-	GLdouble b[] = { 0., mHeight, 20. };
-	GLdouble c[] = { 20., mHeight, 20. };
-	GLdouble d[] = { 20., mHeight, 0. };
+	GLdouble b[] = { 0., mHeight, mLength };
+	GLdouble c[] = { mLength, mHeight, mLength };
+	GLdouble d[] = { mLength, mHeight, 0. };
 
 	glNormal3d(0., 0., 1.);
-	Quad(a, b, c, d);
+	Quad(a, b, c, d, (int)(mLength / 10));
 
 	glDisable(GL_TEXTURE_2D);
 }
