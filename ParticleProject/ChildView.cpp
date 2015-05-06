@@ -33,13 +33,7 @@ BEGIN_MESSAGE_MAP(CChildView, COpenGLWnd)
 	ON_WM_MOUSEMOVE()
 	ON_WM_RBUTTONDOWN()
 	ON_WM_TIMER()
-	ON_COMMAND(ID_PARTICLE_RADIUS, &CChildView::OnParticleRadius)
-	ON_COMMAND(ID_PARTICLE_GREEN, &CChildView::OnParticleGreen)
-	ON_COMMAND(ID_PARTICLE_RED, &CChildView::OnParticleRed)
-	ON_COMMAND(ID_PARTICLE_BLUE, &CChildView::OnParticleBlue)
-	ON_COMMAND(ID_PARTICLE_YELLO, &CChildView::OnParticleYello)
-	ON_COMMAND(ID_PARTICLE_PINK, &CChildView::OnParticlePink)
-	ON_COMMAND(ID_PARTICLE_RANDOMCOLORS, &CChildView::OnParticleRandomcolors)
+	ON_COMMAND(ID_PARTICLE_PROP, &CChildView::OnParticleProp)
 END_MESSAGE_MAP()
 
 
@@ -86,7 +80,7 @@ void CChildView::OnGLDraw(CDC* pDC)
 	QueryPerformanceCounter(&time);
 	long long diff = time.QuadPart - mLastTime;
 	double elapsed = double(diff) / mTimeFreq;
-	mParticle.Update(elapsed);
+	mParticlePool.Update(elapsed);
 	mLastTime = time.QuadPart;
 
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -123,33 +117,30 @@ void CChildView::OnGLDraw(CDC* pDC)
 	glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
 	glPopMatrix();
 
-	// Draw cube
-	//const double RED[] = {0.7, 0.0, 0.0};
-	//glPushMatrix();
-	//glTranslated(1.5, 1.5, 1.5);
-	//glRotated(45.0, 45.0, 45.0, 1.);
-	//glTranslated(-1.5, -1.5, -1.5);
-	//Box(3., 3., 3., RED);
-	//glPopMatrix();
+	// Drawing the floor
+	glPushMatrix();
+	mFloor.SetHeight(-1 * mParticlePool.GetParticleRadius());
+	mFloor.Draw();
+	glPopMatrix();
 
 	//Drawing the particles
-	mParticle.Draw();
+	mParticlePool.Draw();
 
 	// Disable lighting
 	glDisable(GL_LIGHTING);
 	glDisable(GL_LIGHT0);
 
 	// Draw a coordinate axis
-	glColor3d(0., 1., 1.);
-
-	glBegin(GL_LINES);
-	glVertex3d(0., 0., 0.);
-	glVertex3d(12., 0., 0.);
-	glVertex3d(0., 0., 0.);
-	glVertex3d(0., 12., 0.);
-	glVertex3d(0., 0., 0.);
-	glVertex3d(0., 0., 12.);
-	glEnd();
+//	glColor3d(0., 1., 1.);
+//
+//	glBegin(GL_LINES);
+//	glVertex3d(0., 0., 0.);
+//	glVertex3d(12., 0., 0.);
+//	glVertex3d(0., 0., 0.);
+//	glVertex3d(0., 12., 0.);
+//	glVertex3d(0., 0., 0.);
+//	glVertex3d(0., 0., 12.);
+//	glEnd();
 }
 
 //
@@ -239,52 +230,32 @@ void CChildView::OnTimer(UINT_PTR nIDEvent)
 }
 
 
-void CChildView::OnParticleRadius()
+void CChildView::OnParticleProp()
 {
 	CRadiusDlg dlg;
 
-	dlg.mRadius = mParticle.GetPraticleRadius();
+	dlg.mColor = mParticlePool.GetParticleColor();
+	dlg.mBaseVelocityX = mParticlePool.GetParticleVelX();
+	dlg.mBaseVelocityY = mParticlePool.GetParticleVelY();
+	dlg.mBaseVelocityZ = mParticlePool.GetParticleVelZ();
+	dlg.mBaseLife = mParticlePool.GetParticleLife();
+	dlg.mVelVar = mParticlePool.GetParticleVelVar();
+	dlg.mLifeVar = mParticlePool.GetParticleLifeVar();
+	dlg.mRadVar = mParticlePool.GetParticleRadiusVar();
+	dlg.mBaseRadius = mParticlePool.GetParticleRadius();
 
 	if (dlg.DoModal() == IDOK)
 	{
-		mParticle.SetParticleRadius(dlg.mRadius);
+		mParticlePool.SetParticleColor(dlg.mColor);
+		mParticlePool.SetParticleVel(dlg.mBaseVelocityX,
+			                         dlg.mBaseVelocityY,
+			                         dlg.mBaseVelocityZ);
 
-		Invalidate();
+		mParticlePool.SetParticleLife(dlg.mBaseLife);
+		mParticlePool.SetParticleVelVar(dlg.mVelVar);
+		mParticlePool.SetParticleLifeVar(dlg.mLifeVar);
+		mParticlePool.SetParticleRadiusVar(dlg.mRadVar);
+		mParticlePool.SetParticleRadius(dlg.mBaseRadius);
+
 	}
-}
-
-
-void CChildView::OnParticleGreen()
-{
-	mParticle.SetParticleColor(1);
-}
-
-
-void CChildView::OnParticleRed()
-{
-	mParticle.SetParticleColor(2);
-}
-
-
-void CChildView::OnParticleBlue()
-{
-	mParticle.SetParticleColor(3);
-}
-
-
-void CChildView::OnParticleYello()
-{
-	mParticle.SetParticleColor(4);
-}
-
-
-void CChildView::OnParticlePink()
-{
-	mParticle.SetParticleColor(5);
-}
-
-
-void CChildView::OnParticleRandomcolors()
-{
-	mParticle.SetParticleColor(-1);
 }

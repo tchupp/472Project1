@@ -56,7 +56,7 @@ void CParticle::Update(double delta)
 	mPos.Z += mVel.Z * delta;
 
 	// bounce
-	if (mPos.Y < 0 && mVel.Y < 0)
+	if (mPos.Y - mSphere.GetRadius() < 0 && mVel.Y < 0)
 	{
 		mVel.Y = abs(mVel.Y / 1.2);
 	}

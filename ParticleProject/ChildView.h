@@ -7,6 +7,7 @@
 #include "graphics/OpenGLWnd.h"
 #include "graphics/GrCamera.h"
 #include "ParticlePool.h"
+#include "Floor.h"
 
 // CChildView window
 
@@ -26,7 +27,8 @@ private:
 
 private:
 	CGrCamera m_camera;
-	CParticlePool mParticle;
+	CParticlePool mParticlePool;
+	CFloor mFloor;
 
 	/// True until the first time we draw
 	bool mFirstDraw = true;
@@ -42,11 +44,5 @@ public:
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
-	afx_msg void OnParticleRadius();
-	afx_msg void OnParticleGreen();
-	afx_msg void OnParticleRed();
-	afx_msg void OnParticleBlue();
-	afx_msg void OnParticleYello();
-	afx_msg void OnParticlePink();
-	afx_msg void OnParticleRandomcolors();
+	afx_msg void OnParticleProp();
 };

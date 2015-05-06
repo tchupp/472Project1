@@ -33,28 +33,28 @@ void CSphere::Draw()
 		glBindTexture(GL_TEXTURE_2D, m_texture->TexName());
 	}
 
-   GLdouble a[] = {1, 0, 0};
-   GLdouble b[] = {0, 0, -1};
-   GLdouble c[] = {-1, 0, 0};
-   GLdouble d[] = {0, 0, 1};
-   GLdouble e[] = {0, 1, 0};
-   GLdouble f[] = {0, -1, 0};
+	GLdouble a[] = {1, 0, 0};
+	GLdouble b[] = {0, 0, -1};
+	GLdouble c[] = {-1, 0, 0};
+	GLdouble d[] = {0, 0, 1};
+	GLdouble e[] = {0, 1, 0};
+	GLdouble f[] = {0, -1, 0};
 
-   int recurse = 2;
+	int recurse = 2;
 
-   // Temporary...
-   glNormal3d(0, 0, 1);
+	// Temporary...
+	glNormal3d(0, 0, 1);
 
-   SphereFace(recurse, m_radius, d, a, e);
-   SphereFace(recurse, m_radius, a, b, e);
-   SphereFace(recurse, m_radius, b, c, e);
-   SphereFace(recurse, m_radius, c, d, e);
-   SphereFace(recurse, m_radius, a, d, f);
-   SphereFace(recurse, m_radius, b, a, f);
-   SphereFace(recurse, m_radius, c, b, f);
-   SphereFace(recurse, m_radius, d, c, f);
+	SphereFace(recurse, m_radius, d, a, e);
+	SphereFace(recurse, m_radius, a, b, e);
+	SphereFace(recurse, m_radius, b, c, e);
+	SphereFace(recurse, m_radius, c, d, e);
+	SphereFace(recurse, m_radius, a, d, f);
+	SphereFace(recurse, m_radius, b, a, f);
+	SphereFace(recurse, m_radius, c, b, f);
+	SphereFace(recurse, m_radius, d, c, f);
 
-   glDisable(GL_TEXTURE_2D);
+	glDisable(GL_TEXTURE_2D);
 }
 
 
