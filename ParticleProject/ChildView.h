@@ -26,7 +26,7 @@ private:
 
 private:
 	CGrCamera m_camera;
-	CParticlePool mParticlePool;
+	CParticlePool mParticle;
 
 	/// True until the first time we draw
 	bool mFirstDraw = true;

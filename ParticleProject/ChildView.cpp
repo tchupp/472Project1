@@ -86,7 +86,7 @@ void CChildView::OnGLDraw(CDC* pDC)
 	QueryPerformanceCounter(&time);
 	long long diff = time.QuadPart - mLastTime;
 	double elapsed = double(diff) / mTimeFreq;
-	mParticlePool.Update(elapsed);
+	mParticle.Update(elapsed);
 	mLastTime = time.QuadPart;
 
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -133,7 +133,7 @@ void CChildView::OnGLDraw(CDC* pDC)
 	//glPopMatrix();
 
 	//Drawing the particles
-	mParticlePool.Draw();
+	mParticle.Draw();
 
 	// Disable lighting
 	glDisable(GL_LIGHTING);
@@ -243,11 +243,11 @@ void CChildView::OnParticleRadius()
 {
 	CRadiusDlg dlg;
 
-	dlg.mRadius = mParticlePool.GetPraticleRadius();
+	dlg.mRadius = mParticle.GetPraticleRadius();
 
 	if (dlg.DoModal() == IDOK)
 	{
-		mParticlePool.SetParticleRadius(dlg.mRadius);
+		mParticle.SetParticleRadius(dlg.mRadius);
 
 		Invalidate();
 	}
@@ -256,35 +256,35 @@ void CChildView::OnParticleRadius()
 
 void CChildView::OnParticleGreen()
 {
-	mParticlePool.SetParticleColor(1);
+	mParticle.SetParticleColor(1);
 }
 
 
 void CChildView::OnParticleRed()
 {
-	mParticlePool.SetParticleColor(2);
+	mParticle.SetParticleColor(2);
 }
 
 
 void CChildView::OnParticleBlue()
 {
-	mParticlePool.SetParticleColor(3);
+	mParticle.SetParticleColor(3);
 }
 
 
 void CChildView::OnParticleYello()
 {
-	mParticlePool.SetParticleColor(4);
+	mParticle.SetParticleColor(4);
 }
 
 
 void CChildView::OnParticlePink()
 {
-	mParticlePool.SetParticleColor(5);
+	mParticle.SetParticleColor(5);
 }
 
 
 void CChildView::OnParticleRandomcolors()
 {
-	mParticlePool.SetParticleColor(-1);
+	mParticle.SetParticleColor(-1);
 }

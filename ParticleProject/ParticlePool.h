@@ -21,13 +21,9 @@ public:
 	void operator=(const CParticlePool&) = delete;
 
 	double GetPraticleRadius() { return mBaseRadius; }
-	bool SetParticleRadius(double value);
-	bool SetParticleColor(int color);
-	bool SetParticleVel(double vel);
-	bool SetParticleLife(double life);
-	bool SetParticleVelVar(double velVar);
-	bool SetParticleLifeVar(double lifeVar);
-	bool SetParticleRadiusVar(double radVar);
+	void SetParticleRadius(double value) { mBaseRadius = value; }
+
+	void SetParticleColor(int color) { mParticleColor = color; }
 
 	void Update(double delta);
 	void Draw();

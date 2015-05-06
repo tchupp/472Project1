@@ -75,8 +75,7 @@ void CParticle::Spawn(Vector3 pos, Vector3 vel, double lifeTime, double radius)
 }
 
 bool CParticle::Dead(){
-	if (mLifeTime <= 0 || mVel.Y < 0.1)
-	{
+	if (mLifeTime <= 0){
 		return true;
 	}
 	return false;
