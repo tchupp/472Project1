@@ -147,8 +147,10 @@
     <Image Include="res\ParticleProject.ico" />
     <Image Include="res\Toolbar.bmp" />
     <Image Include="textures\blue.bmp" />
+    <Image Include="textures\crate.bmp" />
     <Image Include="textures\green.bmp" />
     <Image Include="textures\pink.bmp" />
+    <Image Include="textures\rainbow_texture.bmp" />
     <Image Include="textures\red.bmp" />
     <Image Include="textures\yellow.bmp" />
   </ItemGroup>

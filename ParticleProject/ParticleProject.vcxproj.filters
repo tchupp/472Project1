@@ -143,5 +143,11 @@
     <Image Include="textures\yellow.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="textures\rainbow_texture.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\crate.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

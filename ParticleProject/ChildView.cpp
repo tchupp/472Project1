@@ -19,7 +19,7 @@ const int FrameDuration = 30;
 CChildView::CChildView()
 {
 	m_camera.Set(20, 10, 50, 0, 0, 0, 0, 1, 0);
-	mBoxTexture.LoadFile(L"textures/plank01.bmp");
+	mBoxTexture.LoadFile(L"textures/crate.bmp");
 }
 
 CChildView::~CChildView()
@@ -127,11 +127,8 @@ void CChildView::OnGLDraw(CDC* pDC)
 
 	// Drawing our box (the object)
 	const double RED[] = { 0.7, 0.0, 0.0 };
-	double spinAngle = 0.;
 	glPushMatrix();
-	glTranslated(1.5, 1.5, 1.5);
-	glRotated(spinAngle, 0., 0., 1.);
-	glTranslated(-1.5, -1.5, -1.5);
+	glTranslated(3, 0, 3);
 	Box(3., 3., 3., RED);
 	glPopMatrix();
 
