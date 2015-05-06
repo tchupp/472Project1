@@ -33,13 +33,7 @@ BEGIN_MESSAGE_MAP(CChildView, COpenGLWnd)
 	ON_WM_MOUSEMOVE()
 	ON_WM_RBUTTONDOWN()
 	ON_WM_TIMER()
-	ON_COMMAND(ID_PARTICLE_RADIUS, &CChildView::OnParticleRadius)
-	ON_COMMAND(ID_PARTICLE_GREEN, &CChildView::OnParticleGreen)
-	ON_COMMAND(ID_PARTICLE_RED, &CChildView::OnParticleRed)
-	ON_COMMAND(ID_PARTICLE_BLUE, &CChildView::OnParticleBlue)
-	ON_COMMAND(ID_PARTICLE_YELLO, &CChildView::OnParticleYello)
-	ON_COMMAND(ID_PARTICLE_PINK, &CChildView::OnParticlePink)
-	ON_COMMAND(ID_PARTICLE_RANDOMCOLORS, &CChildView::OnParticleRandomcolors)
+	ON_COMMAND(ID_PARTICLE_PROP, &CChildView::OnParticleProp)
 END_MESSAGE_MAP()
 
 
@@ -239,52 +233,32 @@ void CChildView::OnTimer(UINT_PTR nIDEvent)
 }
 
 
-void CChildView::OnParticleRadius()
+void CChildView::OnParticleProp()
 {
 	CRadiusDlg dlg;
 
-	dlg.mRadius = mParticlePool.GetPraticleRadius();
+	dlg.mColor = mParticlePool.GetParticleColor();
+	dlg.mBaseVelocityX = mParticlePool.GetParticleVelX();
+	dlg.mBaseVelocityY = mParticlePool.GetParticleVelY();
+	dlg.mBaseVelocityZ = mParticlePool.GetParticleVelZ();
+	dlg.mBaseLife = mParticlePool.GetParticleLife();
+	dlg.mVelVar = mParticlePool.GetParticleVelVar();
+	dlg.mLifeVar = mParticlePool.GetParticleLifeVar();
+	dlg.mRadVar = mParticlePool.GetParticleRadiusVar();
+	dlg.mBaseRadius = mParticlePool.GetParticleRadius();
 
 	if (dlg.DoModal() == IDOK)
 	{
-		mParticlePool.SetParticleRadius(dlg.mRadius);
+		mParticlePool.SetParticleColor(dlg.mColor);
+		mParticlePool.SetParticleVel(dlg.mBaseVelocityX,
+			                         dlg.mBaseVelocityY,
+			                         dlg.mBaseVelocityZ);
 
-		Invalidate();
+		mParticlePool.SetParticleLife(dlg.mBaseLife);
+		mParticlePool.SetParticleVelVar(dlg.mVelVar);
+		mParticlePool.SetParticleLifeVar(dlg.mLifeVar);
+		mParticlePool.SetParticleRadiusVar(dlg.mRadVar);
+		mParticlePool.SetParticleRadius(dlg.mBaseRadius);
+
 	}
-}
-
-
-void CChildView::OnParticleGreen()
-{
-	mParticlePool.SetParticleColor(1);
-}
-
-
-void CChildView::OnParticleRed()
-{
-	mParticlePool.SetParticleColor(2);
-}
-
-
-void CChildView::OnParticleBlue()
-{
-	mParticlePool.SetParticleColor(3);
-}
-
-
-void CChildView::OnParticleYello()
-{
-	mParticlePool.SetParticleColor(4);
-}
-
-
-void CChildView::OnParticlePink()
-{
-	mParticlePool.SetParticleColor(5);
-}
-
-
-void CChildView::OnParticleRandomcolors()
-{
-	mParticlePool.SetParticleColor(-1);
 }

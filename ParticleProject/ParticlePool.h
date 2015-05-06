@@ -20,13 +20,27 @@ public:
 	/** \brief Assignment operator disabled */
 	void operator=(const CParticlePool&) = delete;
 
-	double GetPraticleRadius() { return mBaseRadius; }
+	double GetParticleRadius() { return mBaseRadius; }
 	bool SetParticleRadius(double value);
+
+	int GetParticleColor() { return mParticleColor; }
 	bool SetParticleColor(int color);
-	bool SetParticleVel(double vel);
+
+	double GetParticleVelX() { return mBaseVel.X; }
+	double GetParticleVelY() { return mBaseVel.Y; }
+	double GetParticleVelZ() { return mBaseVel.Z; }
+	bool SetParticleVel(double velX, double velY, double velZ);
+
+	double GetParticleLife() { return mBaseLifeTime; }
 	bool SetParticleLife(double life);
+
+	double GetParticleVelVar() { return mVelVariance; }
 	bool SetParticleVelVar(double velVar);
+
+	double GetParticleLifeVar() { return mLifeVariance; }
 	bool SetParticleLifeVar(double lifeVar);
+
+	double GetParticleRadiusVar() { return mRadiusVariance; }
 	bool SetParticleRadiusVar(double radVar);
 
 	void Update(double delta);

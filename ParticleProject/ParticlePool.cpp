@@ -64,11 +64,11 @@ bool CParticlePool::SetParticleColor(int color)
 	return true;
 }
 
-bool CParticlePool::SetParticleVel(double vel)
+bool CParticlePool::SetParticleVel(double velX, double velY, double velZ)
 {
-	mBaseVel.X = vel;
-	mBaseVel.Y = vel;
-	mBaseVel.Z = vel;
+	mBaseVel.X = velX;
+	mBaseVel.Y = velY;
+	mBaseVel.Z = velZ;
 	return true;
 }
 

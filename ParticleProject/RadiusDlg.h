@@ -1,4 +1,5 @@
 #pragma once
+#include "afxwin.h"
 
 
 // CRadiusDlg dialog
@@ -19,5 +20,19 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
-	double mRadius;
+	double mBaseRadius;
+	int mColor;
+	double mBaseVelocityX;
+	double mBaseVelocityY;
+	double mBaseVelocityZ;
+	double mBaseLife;
+	double mVelVar;
+
+	afx_msg void OnBnClickedGreenRadio();
+	afx_msg void OnBnClickedRedRadio();
+	afx_msg void OnBnClickedBlueRadio();
+	afx_msg void OnBnClickedYellowRadio();
+	afx_msg void OnBnClickedRandomRadio();
+	double mLifeVar;
+	double mRadVar;
 };
