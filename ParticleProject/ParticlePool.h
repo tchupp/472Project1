@@ -43,10 +43,14 @@ public:
 	double GetParticleRadiusVar() { return mRadiusVariance; }
 	bool SetParticleRadiusVar(double radVar);
 
+	int GetMaxActive() { return MaxActive; }
+	bool SetMaxActive(int maxActive);
+
 	void Update(double delta);
 	void Draw();
 
 private:
+	int MaxActive;
 	CParticleList mActive; ///< list of active particles
 	CParticleList mInactive; ///< list of inactive particles
 

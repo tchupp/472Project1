@@ -13,7 +13,7 @@
 const int MaxAdded = 7; ///< will actually be total particles over time of animation
 
 /// total number of active snowflakes
-const int MaxActive = 100;
+
 
 const int sign[2] = {-1, 1};
 
@@ -24,6 +24,7 @@ std::default_random_engine re;
 */
 CParticlePool::CParticlePool() 
 {
+	MaxActive = 100;
 	mBaseVel = Vector3(5.0, 20.0, 5.0);
 	mBaseLifeTime = 5.0;
 	mBaseRadius = 0.3;
@@ -147,6 +148,26 @@ bool CParticlePool::SetParticleRadiusVar(double radVar)
 	}
 
 	mRadiusVariance = radVar;
+	return true;
+}
+
+bool CParticlePool::SetMaxActive(int maxActive)
+{
+	int lowerBound = 1;
+	int upperBound = 100;
+
+	if (maxActive < lowerBound)
+	{
+		MaxActive = lowerBound;
+		return false;
+	}
+	if (maxActive > upperBound)
+	{
+		MaxActive = upperBound;
+		return false;
+	}
+	
+	MaxActive = maxActive;
 	return true;
 }
 
