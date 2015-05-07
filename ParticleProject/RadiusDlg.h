@@ -40,4 +40,5 @@ public:
 
 	
 	int mMotionBlur;		// # motion blur frames
+	double mParticleNum;
 };

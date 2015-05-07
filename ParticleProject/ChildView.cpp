@@ -253,8 +253,8 @@ void CChildView::OnParticleProp()
 	dlg.mLifeVar = mParticlePool.GetParticleLifeVar();
 	dlg.mRadVar = mParticlePool.GetParticleRadiusVar();
 	dlg.mBaseRadius = mParticlePool.GetParticleRadius();
-
 	dlg.mMotionBlur = GetMotionBlur();
+	dlg.mParticleNum = mParticlePool.GetMaxActive();
 
 	if (dlg.DoModal() == IDOK)
 	{
@@ -268,8 +268,8 @@ void CChildView::OnParticleProp()
 		mParticlePool.SetParticleLifeVar(dlg.mLifeVar);
 		mParticlePool.SetParticleRadiusVar(dlg.mRadVar);
 		mParticlePool.SetParticleRadius(dlg.mBaseRadius);
-
 		SetMotionBlur(dlg.mMotionBlur);
+		mParticlePool.SetMaxActive(dlg.mParticleNum);
 	}
 }
 
