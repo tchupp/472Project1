@@ -135,7 +135,8 @@ void CChildView::OnGLDraw(CDC* pDC)
 	// Drawing the floor
 	glPushMatrix();
 	mFloor.SetHeight(-1 * mParticlePool.GetParticleRadius());
-	mFloor.SetLength(50.);
+	glTranslated(-250., 0, -250.);
+	mFloor.SetLength(500.);
 	mFloor.Draw();
 	glPopMatrix();
 
