@@ -128,7 +128,7 @@ void CChildView::OnGLDraw(CDC* pDC)
 	// Drawing our box (the object)
 	const double RED[] = { 0.7, 0.0, 0.0 };
 	glPushMatrix();
-	glTranslated(3, 0, 3);
+	glTranslated(1.5, 0, 2);
 	Box(3., 3., 3., RED);
 	glPopMatrix();
 
