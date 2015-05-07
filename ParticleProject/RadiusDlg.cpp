@@ -50,7 +50,7 @@ void CRadiusDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_RAD_VAR_EDIT, mRadVar);
 	DDV_MinMaxDouble(pDX, mRadVar, 0, .5);
 	DDX_Text(pDX, IDC_EDIT1, mMotionBlur);
-	DDV_MinMaxInt(pDX, mMotionBlur, 0, 10);
+	DDV_MinMaxInt(pDX, mMotionBlur, 1, 3);
 }
 
 
